@@ -31,7 +31,6 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "@repo/prettier-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/devtools-vite": "latest",
@@ -45,7 +44,6 @@
     "@vitejs/plugin-react": "^6.0.1",
     "eslint": "^10.0.0",
     "jsdom": "^28.1.0",
-    "prettier": "^3.8.1",
     "typescript": "^6.0.2",
     "vite": "^8.0.0",
     "vitest": "^4.1.5"
