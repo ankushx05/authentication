@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16
+    container_name: authentication-db
+    restart: always
+    environment:
+      POSTGRES_DB: authentication 
+      POSTGRES_USER: aed56e9f8c6e87f5
+      POSTGRES_PASSWORD: 1348de4d4b9606e1
+    ports:
+      - "5444:5432"
+    volumes:
+      - authentication-pgdata:/var/lib/postgresql/data
+
+volumes:
+  authentication-pgdata:

@@ -7,15 +7,25 @@ import (
 	"net/http"
 
 	"github.com/ankushx05/authentication/internal/platform/config"
+	"github.com/ankushx05/authentication/internal/platform/database"
+	"github.com/ankushx05/authentication/internal/platform/database/ent"
 )
 
 type Application struct {
-	Server *http.Server
-	Config *config.Config
+	Server   *http.Server
+	Config   *config.Config
+	DBClient *ent.Client
 }
 
 func NewApplication() (*Application, error) {
 	cfg, err := config.Load()
+	if err != nil {
+		return nil, err
+	}
+
+	// Connect to database
+	ctx := context.Background()
+	dbClient, err := database.NewPostgresClient(ctx, cfg.DatabaseURL)
 	if err != nil {
 		return nil, err
 	}
@@ -25,8 +35,9 @@ func NewApplication() (*Application, error) {
 	s := NewHTTPServer(mux, cfg)
 
 	return &Application{
-		Server: s,
-		Config: cfg,
+		Server:   s,
+		Config:   cfg,
+		DBClient: dbClient,
 	}, nil
 }
 
@@ -41,9 +52,15 @@ func (a *Application) Start(ctx context.Context) error {
 }
 
 func (a *Application) Shutdown(ctx context.Context) error {
-	err := a.Server.Shutdown(ctx)
-	if err != nil && !errors.Is(err, http.ErrServerClosed) {
+	if err := a.Server.Shutdown(ctx); err != nil && !errors.Is(err, http.ErrServerClosed) {
 		return err
 	}
+
+	if a.DBClient != nil {
+		if err := a.DBClient.Close(); err != nil {
+			log.Printf("failed to close database connection: %v", err)
+		}
+	}
+
 	return nil
 }
