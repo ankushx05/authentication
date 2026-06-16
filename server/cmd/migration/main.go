@@ -2,27 +2,31 @@ package main
 
 import (
 	"context"
-	"log"
+	"fmt"
 
 	"github.com/ankushx05/authentication/internal/platform/config"
 	"github.com/ankushx05/authentication/internal/platform/database"
+	"github.com/ankushx05/authentication/internal/platform/logger"
 )
 
 func main() {
 	if err := run(); err != nil {
-		log.Fatal(err)
+		log := logger.New()
+		log.Fatal("Migration failed", "error", err)
 	}
 }
 
 func run() error {
+	log := logger.New()
+
 	// Load Env
-	env, err := config.Load()
+	env, err := config.Load(log)
 	if err != nil {
 		return err
 	}
 
 	// Connect to db
-	client, err := database.NewPostgresClient(context.Background(), env.DatabaseURL)
+	client, err := database.NewPostgresClient(context.Background(), env.DatabaseURL, log)
 	if err != nil {
 		return err
 	}
@@ -30,10 +34,10 @@ func run() error {
 
 	// migrate
 	if err := client.Schema.Create(context.Background()); err != nil {
-		log.Fatalf("failed creating schema resources: %v", err)
+		return fmt.Errorf("failed creating schema resources: %w", err)
 	}
 
-	log.Println("✅ Database migrated successfully")
+	log.Info("Database migrated successfully")
 
 	return nil
 }

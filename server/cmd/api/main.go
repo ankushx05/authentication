@@ -2,18 +2,20 @@ package main
 
 import (
 	"context"
-	"log"
 	"os/signal"
 	"syscall"
 	"time"
 
 	"github.com/ankushx05/authentication/internal/bootstrap"
+	"github.com/ankushx05/authentication/internal/platform/logger"
 )
 
 func main() {
+	log := logger.New()
+
 	app, err := bootstrap.NewApplication()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Failed to initialize application", "error", err)
 	}
 
 	ctx, stop := signal.NotifyContext(
@@ -24,17 +26,17 @@ func main() {
 	defer stop()
 
 	if err := app.Start(ctx); err != nil {
-		log.Fatal(err)
+		log.Fatal("Failed to start application", "error", err)
 	}
 
 	<-ctx.Done()
-	log.Println("⏳ Shutting down server...")
+	app.Log.Warn("Shutting down server...")
 	shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
 	if err := app.Shutdown(shutdownCtx); err != nil {
-		log.Fatal(err)
+		log.Fatal("Failed to shutdown gracefully", "error", err)
 	}
 
-	log.Println("👋 Server exited gracefully")
+	app.Log.Info("Server exited gracefully")
 }

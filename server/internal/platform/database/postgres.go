@@ -4,17 +4,17 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"log"
 	"time"
 
 	"github.com/ankushx05/authentication/internal/platform/database/ent"
+	"github.com/ankushx05/authentication/internal/platform/logger"
 
 	"entgo.io/ent/dialect"
 	entsql "entgo.io/ent/dialect/sql"
 	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
-func NewPostgresClient(ctx context.Context, databaseUrl string) (*ent.Client, error) {
+func NewPostgresClient(ctx context.Context, databaseUrl string, log *logger.Logger) (*ent.Client, error) {
 	db, err := sql.Open("pgx", databaseUrl)
 	if err != nil {
 		return nil, fmt.Errorf("failed opening connection to postgres: %v", err)
@@ -32,7 +32,7 @@ func NewPostgresClient(ctx context.Context, databaseUrl string) (*ent.Client, er
 		return nil, fmt.Errorf("failed to ping database: %v", err)
 	}
 
-	log.Println("✅ Database Connected")
+	log.Info("Database connected")
 
 	drv := entsql.OpenDB(dialect.Postgres, db)
 	client := ent.NewClient(ent.Driver(drv))
