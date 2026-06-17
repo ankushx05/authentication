@@ -1,0 +1,18 @@
+version: v2
+clean: true
+plugins:
+  - local: protoc-gen-go
+    out: ../server/gen/proto
+    opt: paths=source_relative
+  - local: protoc-gen-connect-go
+    out: ../server/gen/proto
+    opt: paths=source_relative
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/ankushx05/authentication/gen/proto
+  disable:
+    - file_option: go_package
+      module: buf.build/bufbuild/protovalidate
+       

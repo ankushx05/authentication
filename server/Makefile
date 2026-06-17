@@ -1,4 +1,4 @@
-.PHONY: run build ent-gen ent-new
+.PHONY: run build ent-gen ent-new proto-gen
 
 # Run the server
 run:
@@ -7,6 +7,10 @@ run:
 # Build the server binary
 build:
 	go build -o ./bin/server ./cmd/api
+
+# Generate protobuf code (from root protos directory)
+proto-gen:
+	cd ../protos && buf generate	
 
 migrate:
 	go run ./cmd/migration

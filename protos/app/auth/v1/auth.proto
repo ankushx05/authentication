@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package app.auth.v1;
+
+import "buf/validate/validate.proto";
+
+service AuthService {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+}
+
+// ==================== REGISTER ====================
+message RegisterRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string fullname = 2 [(buf.validate.field).required = true];
+  string username = 3 [(buf.validate.field).required = true];
+  string password = 4 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 6
+  ];
+}
+
+message RegisterResponse {
+  string message = 1;
+}

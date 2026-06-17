@@ -5,6 +5,7 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/ankushx05/authentication/internal/modules/identity"
 	"github.com/ankushx05/authentication/internal/platform/config"
 	"github.com/ankushx05/authentication/internal/platform/database"
 	"github.com/ankushx05/authentication/internal/platform/database/ent"
@@ -19,22 +20,30 @@ type Application struct {
 }
 
 func NewApplication() (*Application, error) {
+	// 1. Initialize logger
 	log := logger.New()
 
+	// 2. Load configuration
 	cfg, err := config.Load(log)
 	if err != nil {
 		return nil, err
 	}
 
-	// Connect to database
+	// 3. Connect to database
 	ctx := context.Background()
 	dbClient, err := database.NewPostgresClient(ctx, cfg.DatabaseURL, log)
 	if err != nil {
 		return nil, err
 	}
 
-	mux := NewRouter()
+	// 4. Wire up modules
+	identityModule := identity.NewModule()
 
+	// 5. Initialize router and register routes
+	mux := NewRouter()
+	identityModule.RegisterRoutes(mux)
+
+	// 6. Initialize HTTP server
 	s := NewHTTPServer(mux, cfg)
 
 	return &Application{
