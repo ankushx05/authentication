@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	"entgo.io/ent/dialect/sql/schema"
 	"github.com/ankushx05/authentication/internal/platform/config"
 	"github.com/ankushx05/authentication/internal/platform/database"
 	"github.com/ankushx05/authentication/internal/platform/logger"
@@ -33,7 +34,7 @@ func run() error {
 	defer client.Close()
 
 	// migrate
-	if err := client.Schema.Create(context.Background()); err != nil {
+	if err := client.Schema.Create(context.Background(), schema.WithDropColumn(true)); err != nil {
 		return fmt.Errorf("failed creating schema resources: %w", err)
 	}
 

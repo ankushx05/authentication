@@ -1,6 +1,10 @@
 package schema
 
-import "entgo.io/ent"
+import (
+	"entgo.io/ent"
+	"entgo.io/ent/schema/field"
+	"github.com/ankushx05/authentication/internal/platform/database/ent/schema/mixins"
+)
 
 // User holds the schema definition for the User entity.
 type User struct {
@@ -9,7 +13,19 @@ type User struct {
 
 // Fields of the User.
 func (User) Fields() []ent.Field {
-	return nil
+	return []ent.Field{
+		field.String("fullname").NotEmpty(),
+		field.String("email").NotEmpty().Unique(),
+		field.String("username").NotEmpty().Unique(),
+		field.String("password").NotEmpty().Sensitive(),
+	}
+}
+
+func (User) Mixin() []ent.Mixin {
+	return []ent.Mixin{
+		mixins.BaseMixin{},
+		mixins.SoftDeleteMixin{},
+	}
 }
 
 // Edges of the User.
