@@ -1,6 +1,7 @@
 import { Button } from "@repo/ui/button";
+import { Link as LinkUI } from "@repo/ui/link";
 import { Text } from "@repo/ui/text";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 
 export const Route = createFileRoute("/")({ component: App });
@@ -20,6 +21,7 @@ function App() {
       >
         Click Me!
       </Button>
+      <LinkUI render={<Link to="/register" />}>Register</LinkUI>
     </main>
   );
 }

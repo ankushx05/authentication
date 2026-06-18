@@ -1,0 +1,14 @@
+version: v2
+clean: true
+inputs:
+  - directory: .
+    exclude_paths:
+      - "./app"
+plugins:
+  - local: ../client/node_modules/.bin/protoc-gen-es
+    out: ../client/apps/admin/src/gen
+    include_imports: true
+    opt:
+      - target=ts
+    exclude_types:
+      - "buf.validate"

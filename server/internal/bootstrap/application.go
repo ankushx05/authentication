@@ -10,6 +10,7 @@ import (
 	"github.com/ankushx05/authentication/internal/platform/database"
 	"github.com/ankushx05/authentication/internal/platform/database/ent"
 	"github.com/ankushx05/authentication/internal/platform/logger"
+	"github.com/ankushx05/authentication/internal/platform/transport/middleware"
 )
 
 type Application struct {
@@ -43,8 +44,11 @@ func NewApplication() (*Application, error) {
 	mux := NewRouter()
 	identityModule.RegisterRoutes(mux)
 
-	// 6. Initialize HTTP server
-	s := NewHTTPServer(mux, cfg)
+	// 6. Wrap router with CORS middleware
+	handler := middleware.WithCORS(cfg.AllowedOrigins)(mux)
+
+	// 7. Initialize HTTP server
+	s := NewHTTPServer(handler, cfg)
 
 	return &Application{
 		Server:   s,

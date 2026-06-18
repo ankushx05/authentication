@@ -10,8 +10,9 @@ import (
 )
 
 type Config struct {
-	Port        string `env:"PORT" envDefault:"8080"`
-	DatabaseURL string `env:"DATABASE_URL" required:"true"`
+	Port           string `env:"PORT" envDefault:"8080"`
+	DatabaseURL    string `env:"DATABASE_URL" required:"true"`
+	AllowedOrigins string `env:"ALLOWED_ORIGINS" envDefault:"http://localhost:3000"`
 }
 
 func Load(log *logger.Logger) (*Config, error) {

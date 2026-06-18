@@ -21,5 +21,8 @@
       "esbuild",
       "lightningcss"
     ]
+  },
+  "dependencies": {
+    "@bufbuild/protoc-gen-es": "^2.12.0"
   }
 }
