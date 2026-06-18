@@ -6,14 +6,17 @@ import (
 	"connectrpc.com/connect"
 	authv1 "github.com/ankushx05/authentication/gen/proto/app/auth/v1"
 	"github.com/ankushx05/authentication/gen/proto/app/auth/v1/authv1connect"
+	"github.com/ankushx05/authentication/internal/modules/identity/ports"
 )
 
 var _ authv1connect.AuthServiceHandler = (*AuthHandler)(nil)
 
-type AuthHandler struct{}
+type AuthHandler struct {
+	userService ports.UserService
+}
 
-func NewAuthHandler() *AuthHandler {
-	return &AuthHandler{}
+func NewAuthHandler(userService ports.UserService) *AuthHandler {
+	return &AuthHandler{userService: userService}
 }
 
 func (h *AuthHandler) Register(ctx context.Context, req *connect.Request[authv1.RegisterRequest]) (*connect.Response[authv1.RegisterResponse], error) {
@@ -21,6 +24,17 @@ func (h *AuthHandler) Register(ctx context.Context, req *connect.Request[authv1.
 	//     --header "Content-Type: application/json" \
 	//     --data '{"fullname": "Ankush Kumar"}' \
 	//     http://localhost:8888/app.auth.v1.AuthService/Register
+
+	fullname := req.Msg.GetFullname()
+	username := req.Msg.GetUsername()
+	email := req.Msg.GetEmail()
+	password := req.Msg.GetPassword()
+
+	_, err := h.userService.CreateUser(ctx, fullname, email, username, password)
+
+	if err != nil {
+		return nil, err
+	}
 
 	return connect.NewResponse(&authv1.RegisterResponse{
 		Message: "Register Success",

@@ -37,7 +37,7 @@ func NewApplication() (*Application, error) {
 	}
 
 	// 4. Wire up modules
-	identityModule := identity.NewModule()
+	identityModule := identity.NewModule(dbClient)
 
 	// 5. Initialize router and register routes
 	mux := NewRouter()
