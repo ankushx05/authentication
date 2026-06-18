@@ -13,6 +13,7 @@ func (m *Module) RegisterRoutes(mux *http.ServeMux) {
 	path, handler := authv1connect.NewAuthServiceHandler(
 		m.UserAuthHanlder,
 		connect.WithInterceptors(
+			interceptors.NewLoggingInterceptor(),
 			interceptors.NewErrorInterceptor(),
 			validate.NewInterceptor(),
 		),
