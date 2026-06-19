@@ -2,26 +2,15 @@
 // @generated from file app/auth/v1/auth.proto (package app.auth.v1, syntax proto3)
 /* eslint-disable */
 
-import type {
-  GenFile,
-  GenMessage,
-  GenService,
-} from "@bufbuild/protobuf/codegenv2";
-import {
-  fileDesc,
-  messageDesc,
-  serviceDesc,
-} from "@bufbuild/protobuf/codegenv2";
+import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file app/auth/v1/auth.proto.
  */
-export const file_app_auth_v1_auth: GenFile =
-  /*@__PURE__*/
-  fileDesc(
-    "ChZhcHAvYXV0aC92MS9hdXRoLnByb3RvEgthcHAuYXV0aC52MSJ7Cg9SZWdpc3RlclJlcXVlc3QSFgoFZW1haWwYASABKAlCB7pIBHICYAESGAoIZnVsbG5hbWUYAiABKAlCBrpIA8gBARIYCgh1c2VybmFtZRgDIAEoCUIGukgDyAEBEhwKCHBhc3N3b3JkGAQgASgJQgq6SAfIAQFyAhAGIiMKEFJlZ2lzdGVyUmVzcG9uc2USDwoHbWVzc2FnZRgBIAEoCTJWCgtBdXRoU2VydmljZRJHCghSZWdpc3RlchIcLmFwcC5hdXRoLnYxLlJlZ2lzdGVyUmVxdWVzdBodLmFwcC5hdXRoLnYxLlJlZ2lzdGVyUmVzcG9uc2ViBnByb3RvMw",
-  );
+export const file_app_auth_v1_auth: GenFile = /*@__PURE__*/
+  fileDesc("ChZhcHAvYXV0aC92MS9hdXRoLnByb3RvEgthcHAuYXV0aC52MSJ7Cg9SZWdpc3RlclJlcXVlc3QSFgoFZW1haWwYASABKAlCB7pIBHICYAESGAoIZnVsbG5hbWUYAiABKAlCBrpIA8gBARIYCgh1c2VybmFtZRgDIAEoCUIGukgDyAEBEhwKCHBhc3N3b3JkGAQgASgJQgq6SAfIAQFyAhAGIiMKEFJlZ2lzdGVyUmVzcG9uc2USDwoHbWVzc2FnZRgBIAEoCSJACgxMb2dpblJlcXVlc3QSFgoFZW1haWwYASABKAlCB7pIBHICYAESGAoIcGFzc3dvcmQYAiABKAlCBrpIA8gBASIgCg1Mb2dpblJlc3BvbnNlEg8KB21lc3NhZ2UYASABKAkylgEKC0F1dGhTZXJ2aWNlEkcKCFJlZ2lzdGVyEhwuYXBwLmF1dGgudjEuUmVnaXN0ZXJSZXF1ZXN0Gh0uYXBwLmF1dGgudjEuUmVnaXN0ZXJSZXNwb25zZRI+CgVMb2dpbhIZLmFwcC5hdXRoLnYxLkxvZ2luUmVxdWVzdBoaLmFwcC5hdXRoLnYxLkxvZ2luUmVzcG9uc2ViBnByb3RvMw");
 
 /**
  * ==================== REGISTER ====================
@@ -54,8 +43,7 @@ export type RegisterRequest = Message<"app.auth.v1.RegisterRequest"> & {
  * Describes the message app.auth.v1.RegisterRequest.
  * Use `create(RegisterRequestSchema)` to create a new message.
  */
-export const RegisterRequestSchema: GenMessage<RegisterRequest> =
-  /*@__PURE__*/
+export const RegisterRequestSchema: GenMessage<RegisterRequest> = /*@__PURE__*/
   messageDesc(file_app_auth_v1_auth, 0);
 
 /**
@@ -72,9 +60,49 @@ export type RegisterResponse = Message<"app.auth.v1.RegisterResponse"> & {
  * Describes the message app.auth.v1.RegisterResponse.
  * Use `create(RegisterResponseSchema)` to create a new message.
  */
-export const RegisterResponseSchema: GenMessage<RegisterResponse> =
-  /*@__PURE__*/
+export const RegisterResponseSchema: GenMessage<RegisterResponse> = /*@__PURE__*/
   messageDesc(file_app_auth_v1_auth, 1);
+
+/**
+ * ==================== LOGIN ====================
+ *
+ * @generated from message app.auth.v1.LoginRequest
+ */
+export type LoginRequest = Message<"app.auth.v1.LoginRequest"> & {
+  /**
+   * @generated from field: string email = 1;
+   */
+  email: string;
+
+  /**
+   * @generated from field: string password = 2;
+   */
+  password: string;
+};
+
+/**
+ * Describes the message app.auth.v1.LoginRequest.
+ * Use `create(LoginRequestSchema)` to create a new message.
+ */
+export const LoginRequestSchema: GenMessage<LoginRequest> = /*@__PURE__*/
+  messageDesc(file_app_auth_v1_auth, 2);
+
+/**
+ * @generated from message app.auth.v1.LoginResponse
+ */
+export type LoginResponse = Message<"app.auth.v1.LoginResponse"> & {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message: string;
+};
+
+/**
+ * Describes the message app.auth.v1.LoginResponse.
+ * Use `create(LoginResponseSchema)` to create a new message.
+ */
+export const LoginResponseSchema: GenMessage<LoginResponse> = /*@__PURE__*/
+  messageDesc(file_app_auth_v1_auth, 3);
 
 /**
  * @generated from service app.auth.v1.AuthService
@@ -87,5 +115,15 @@ export const AuthService: GenService<{
     methodKind: "unary";
     input: typeof RegisterRequestSchema;
     output: typeof RegisterResponseSchema;
-  };
-}> = /*@__PURE__*/ serviceDesc(file_app_auth_v1_auth, 0);
+  },
+  /**
+   * @generated from rpc app.auth.v1.AuthService.Login
+   */
+  login: {
+    methodKind: "unary";
+    input: typeof LoginRequestSchema;
+    output: typeof LoginResponseSchema;
+  },
+}> = /*@__PURE__*/
+  serviceDesc(file_app_auth_v1_auth, 0);
+

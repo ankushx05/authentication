@@ -19,6 +19,8 @@ func NewUserService(repo ports.UserRepository) *UserService {
 	return &UserService{repo}
 }
 
+// Register User
+// @TODO: Add password encryption
 func (s *UserService) CreateUser(ctx context.Context, fullname, email, username, password string) (*domain.User, error) {
 	existing, _ := s.repo.GetByEmail(ctx, email)
 	if existing != nil {
@@ -43,6 +45,21 @@ func (s *UserService) CreateUser(ctx context.Context, fullname, email, username,
 	}
 
 	return created, nil
+}
+
+// Login User
+// @TODO: Add password encryption and JWT token generation
+func (s *UserService) Login(ctx context.Context, email, password string) (*domain.User, error) {
+	user, err := s.repo.GetByEmail(ctx, email)
+	if err != nil || user == nil {
+		return nil, errors.NewUnauthorized("invalid email or password")
+	}
+
+	if user.Password != password {
+		return nil, errors.NewUnauthorized("invalid email or password")
+	}
+
+	return user, nil
 }
 
 func (s *UserService) GetUser(ctx context.Context, id uuid.UUID) (*domain.User, error) {

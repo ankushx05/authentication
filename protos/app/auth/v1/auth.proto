@@ -6,6 +6,7 @@ import "buf/validate/validate.proto";
 
 service AuthService {
   rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
 }
 
 // ==================== REGISTER ====================
@@ -20,5 +21,15 @@ message RegisterRequest {
 }
 
 message RegisterResponse {
+  string message = 1;
+}
+
+// ==================== LOGIN ====================
+message LoginRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string password = 2 [(buf.validate.field).required = true];
+}
+
+message LoginResponse {
   string message = 1;
 }

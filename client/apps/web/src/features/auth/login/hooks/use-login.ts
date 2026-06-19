@@ -1,0 +1,28 @@
+import { useMutation } from "@connectrpc/connect-query";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { loginApi } from "../api";
+import { loginSchema, type Login } from "../schemas/login.schema";
+
+export type FormValues = Login;
+
+export const useLogin = () => {
+  const mutation = useMutation(loginApi);
+
+  const methods = useForm<FormValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "ankushx970@gmail.com",
+      password: "11111111",
+    },
+    disabled: mutation.isPending,
+  });
+
+  const { handleSubmit } = methods;
+
+  const onSubmit = handleSubmit((data) => {
+    mutation.mutate(data);
+  });
+
+  return { methods, onSubmit, isPending: mutation.isPending };
+};

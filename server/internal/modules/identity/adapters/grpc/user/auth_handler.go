@@ -40,3 +40,17 @@ func (h *AuthHandler) Register(ctx context.Context, req *connect.Request[authv1.
 		Message: "Register Success",
 	}), nil
 }
+
+func (h *AuthHandler) Login(ctx context.Context, req *connect.Request[authv1.LoginRequest]) (*connect.Response[authv1.LoginResponse], error) {
+	email := req.Msg.GetEmail()
+	password := req.Msg.GetPassword()
+
+	_, err := h.userService.Login(ctx, email, password)
+	if err != nil {
+		return nil, err
+	}
+
+	return connect.NewResponse(&authv1.LoginResponse{
+		Message: "Login Success",
+	}), nil
+}
