@@ -12,6 +12,7 @@ require (
 	connectrpc.com/connect v1.20.0
 	connectrpc.com/cors v0.1.0
 	connectrpc.com/validate v0.6.0
+	github.com/golang-jwt/jwt/v5 v5.3.1
 	github.com/jackc/pgx/v5 v5.10.0
 	github.com/rs/cors v1.11.1
 	google.golang.org/protobuf v1.36.11

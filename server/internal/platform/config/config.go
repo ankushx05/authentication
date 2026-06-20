@@ -13,6 +13,10 @@ type Config struct {
 	Port           string `env:"PORT" envDefault:"8080"`
 	DatabaseURL    string `env:"DATABASE_URL" required:"true"`
 	AllowedOrigins string `env:"ALLOWED_ORIGINS" envDefault:"http://localhost:3000"`
+	JwtSecret      string `env:"JWT_SECRET" envDefault:"my_super_secret_key"`
+	JwtExpiration  int    `env:"JWT_EXPIRATION" envDefault:"24"` // In hours
+	CookieDomain   string `env:"COOKIE_DOMAIN" envDefault:"localhost"`
+	CookieSecure   bool   `env:"COOKIE_SECURE" envDefault:"false"`
 }
 
 func Load(log *logger.Logger) (*Config, error) {

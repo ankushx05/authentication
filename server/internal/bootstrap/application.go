@@ -7,8 +7,10 @@ import (
 
 	"github.com/ankushx05/authentication/internal/modules/identity"
 	"github.com/ankushx05/authentication/internal/platform/config"
+	"github.com/ankushx05/authentication/internal/platform/cookie"
 	"github.com/ankushx05/authentication/internal/platform/database"
 	"github.com/ankushx05/authentication/internal/platform/database/ent"
+	"github.com/ankushx05/authentication/internal/platform/deps"
 	"github.com/ankushx05/authentication/internal/platform/logger"
 	"github.com/ankushx05/authentication/internal/platform/transport/middleware"
 )
@@ -37,8 +39,16 @@ func NewApplication() (*Application, error) {
 		return nil, err
 	}
 
+	cookieManager := cookie.NewCookieManager(cfg.CookieDomain, cfg.CookieSecure)
+
+	d := &deps.Deps{
+		DB:     dbClient,
+		Config: cfg,
+		Cookie: cookieManager,
+	}
+
 	// 4. Wire up modules
-	identityModule := identity.NewModule(dbClient)
+	identityModule := identity.NewModule(d)
 
 	// 5. Initialize router and register routes
 	mux := NewRouter()
