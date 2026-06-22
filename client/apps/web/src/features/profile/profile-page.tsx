@@ -4,9 +4,9 @@ import { Card } from "@repo/ui/card";
 import { Separator } from "@repo/ui/separator";
 import { Skeleton } from "@repo/ui/skeleton";
 import { Text } from "@repo/ui/text";
-import { Link } from "@tanstack/react-router";
 import { useProfile } from "./hooks/use-profile";
 import { DefaultErrorComponent } from "#/components/default-error";
+import { useLogout } from "../auth/login/hooks/use-logout";
 
 const ProfileInfoRow = ({ label, value }: { label: string; value: string }) => (
   <div className="flex items-center justify-between py-3">
@@ -37,6 +37,7 @@ const ProfileSkeleton = () => (
 
 export const ProfilePage = () => {
   const { data, isLoading, isError, error, refetch } = useProfile();
+  const { logout, isPending: isLoggingOut } = useLogout();
 
   if (isError) {
     return <DefaultErrorComponent error={error} reset={refetch} />;
@@ -78,9 +79,10 @@ export const ProfilePage = () => {
                 color="danger"
                 variant="light"
                 className="w-full"
-                render={<Link to="/login" />}
+                onClick={logout}
+                disabled={isLoggingOut}
               >
-                Sign Out
+                {isLoggingOut ? "Signing Out..." : "Sign Out"}
               </Button>
             </div>
           )}

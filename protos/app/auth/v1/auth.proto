@@ -7,6 +7,14 @@ import "buf/validate/validate.proto";
 service AuthService {
   rpc Register(RegisterRequest) returns (RegisterResponse);
   rpc Login(LoginRequest) returns (LoginResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
+}
+
+// ==================== LOGOUT ====================
+message LogoutRequest {}
+
+message LogoutResponse {
+  string message = 1;
 }
 
 // ==================== REGISTER ====================

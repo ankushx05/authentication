@@ -76,3 +76,15 @@ func (h *AuthHandler) Login(ctx context.Context, req *connect.Request[authv1.Log
 
 	return res, nil
 }
+
+// ======================= LOGOUT =======================
+func (h *AuthHandler) Logout(ctx context.Context, req *connect.Request[authv1.LogoutRequest]) (*connect.Response[authv1.LogoutResponse], error) {
+	// Build response and delete cookie
+	res := connect.NewResponse(&authv1.LogoutResponse{
+		Message: "Logout Success",
+	})
+
+	h.cookieManager.DeleteCookie(res, cookie.AccessTokenCookie)
+
+	return res, nil
+}
