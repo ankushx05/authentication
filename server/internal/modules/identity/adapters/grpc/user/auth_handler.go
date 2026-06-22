@@ -28,6 +28,7 @@ func NewAuthHandler(userService ports.UserService, tokenService *jwt.TokenServic
 	}
 }
 
+// ======================= REGISTER =======================
 func (h *AuthHandler) Register(ctx context.Context, req *connect.Request[authv1.RegisterRequest]) (*connect.Response[authv1.RegisterResponse], error) {
 	fullname := req.Msg.GetFullname()
 	username := req.Msg.GetUsername()
@@ -44,6 +45,7 @@ func (h *AuthHandler) Register(ctx context.Context, req *connect.Request[authv1.
 	}), nil
 }
 
+// ======================= LOGIN =======================
 func (h *AuthHandler) Login(ctx context.Context, req *connect.Request[authv1.LoginRequest]) (*connect.Response[authv1.LoginResponse], error) {
 	email := req.Msg.GetEmail()
 	password := req.Msg.GetPassword()

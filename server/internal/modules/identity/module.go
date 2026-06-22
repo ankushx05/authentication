@@ -10,7 +10,9 @@ import (
 )
 
 type Module struct {
-	authHandler *usergrpc.AuthHandler
+	authHandler    *usergrpc.AuthHandler
+	profileHandler *usergrpc.ProfileHandler
+	tokenService   *jwt.TokenService[domain.TokenPayload]
 }
 
 func NewModule(d *deps.Deps) *Module {
@@ -19,8 +21,11 @@ func NewModule(d *deps.Deps) *Module {
 
 	tokenService := jwt.NewTokenService[domain.TokenPayload](d.Config.JwtSecret, "auth-service", d.Config.JwtExpiration)
 	authHandler := usergrpc.NewAuthHandler(service, tokenService, d.Cookie)
+	profileHandler := usergrpc.NewProfileHandler(service)
 
 	return &Module{
-		authHandler: authHandler,
+		authHandler:    authHandler,
+		profileHandler: profileHandler,
+		tokenService:   tokenService,
 	}
 }

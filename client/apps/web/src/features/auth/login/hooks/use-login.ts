@@ -1,13 +1,22 @@
 import { useMutation } from "@connectrpc/connect-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useNavigate, useRouter } from "@tanstack/react-router";
 import { loginApi } from "../api";
 import { loginSchema, type Login } from "../schemas/login.schema";
 
 export type FormValues = Login;
 
 export const useLogin = () => {
-  const mutation = useMutation(loginApi);
+  const navigate = useNavigate();
+  const router = useRouter();
+
+  const mutation = useMutation(loginApi, {
+    onSuccess: async () => {
+      await router.invalidate();
+      await navigate({ to: "/profile" });
+    },
+  });
 
   const methods = useForm<FormValues>({
     resolver: zodResolver(loginSchema),

@@ -4,6 +4,7 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 
 import appCss from "../styles.css?url";
 import { AppProvider } from "#/providers";
+import { DefaultErrorComponent } from "#/components/default-error";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -26,6 +27,7 @@ export const Route = createRootRoute({
       },
     ],
   }),
+  errorComponent: DefaultErrorComponent,
   shellComponent: RootDocument,
 });
 

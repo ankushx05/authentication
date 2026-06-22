@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+    "preview": "turbo run preview",
     "lint": "turbo lint",
     "format": "prettier --write .",
     "type-check": "turbo type-check",

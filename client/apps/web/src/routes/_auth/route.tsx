@@ -1,10 +1,27 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { getAuthState } from "#/utils/auth";
+import z from "zod";
 
-export const Route = createFileRoute("/_auth")({
-  component: RouteComponent,
+const searchSchema = z.object({
+  session_expired: z.boolean().optional().catch(undefined),
 });
 
-function RouteComponent() {
+export const Route = createFileRoute("/_auth")({
+  validateSearch: searchSchema,
+  beforeLoad: async ({ search }) => {
+    if (search.session_expired) {
+      return;
+    }
+
+    const { isAuthenticated } = await getAuthState();
+    if (isAuthenticated) {
+      throw redirect({ to: "/profile" });
+    }
+  },
+  component: AuthLayout,
+});
+
+function AuthLayout() {
   return (
     <div>
       <Outlet />

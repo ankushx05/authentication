@@ -22,6 +22,7 @@ function App() {
         Click Me!
       </Button>
       <LinkUI render={<Link to="/register" />}>Register</LinkUI>
+      <LinkUI render={<Link to="/profile" />}>Profile</LinkUI>
     </main>
   );
 }

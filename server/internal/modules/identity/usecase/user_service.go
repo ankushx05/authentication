@@ -77,3 +77,11 @@ func (s *UserService) GetUserByEmail(ctx context.Context, email string) (*domain
 	}
 	return user, nil
 }
+
+func (s *UserService) GetUserById(ctx context.Context, id string) (*domain.User, error) {
+	user, err := s.repo.GetByID(ctx, uuid.MustParse(id))
+	if err != nil {
+		return nil, errors.NewNotFound("user", id)
+	}
+	return user, nil
+}

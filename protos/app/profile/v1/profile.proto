@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package app.profile.v1;
+
+service ProfileService {
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
+}
+
+message GetProfileRequest {}
+message GetProfileResponse {
+  string fullname = 1;
+  string email = 2;
+  string username = 3;
+}

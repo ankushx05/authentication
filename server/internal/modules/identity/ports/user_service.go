@@ -12,4 +12,5 @@ type UserService interface {
 	Login(ctx context.Context, email, password string) (*domain.User, error)
 	GetUser(ctx context.Context, id uuid.UUID) (*domain.User, error)
 	GetUserByEmail(ctx context.Context, email string) (*domain.User, error)
+	GetUserById(ctx context.Context, id string) (*domain.User, error)
 }
