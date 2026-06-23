@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/ankushx05/authentication/internal/platform/database/ent/schema"
+	"github.com/ankushx05/authentication/internal/platform/database/ent/setting"
 	"github.com/ankushx05/authentication/internal/platform/database/ent/user"
 	"github.com/google/uuid"
 )
@@ -14,6 +15,12 @@ import (
 // (default values, validators, hooks and policies) and stitches it
 // to their package variables.
 func init() {
+	settingFields := schema.Setting{}.Fields()
+	_ = settingFields
+	// settingDescID is the schema descriptor for id field.
+	settingDescID := settingFields[0].Descriptor()
+	// setting.DefaultID holds the default value on creation for the id field.
+	setting.DefaultID = settingDescID.Default.(func() uuid.UUID)
 	userMixin := schema.User{}.Mixin()
 	userMixinFields0 := userMixin[0].Fields()
 	_ = userMixinFields0
