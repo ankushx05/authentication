@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package admin.settings.v1;
+
+import "buf/validate/validate.proto";
+
+service SettingsService {
+  rpc GetMailSettings(GetMailSettingsRequest) returns (GetMailSettingsResponse);
+  rpc UpdateMailSettings(UpdateMailSettingsRequest) returns (UpdateMailSettingsResponse);
+}
+
+message MailSettings {
+  string host = 1 [(buf.validate.field).string.min_len = 1];
+  string username = 2 [(buf.validate.field).string.min_len = 1];
+  string password = 3 [(buf.validate.field).string.min_len = 1];
+  string encryption = 4 [(buf.validate.field).string.min_len = 1];
+}
+
+// ========================= GET MAIL SETTINGS =========================
+message GetMailSettingsRequest {}
+
+message GetMailSettingsResponse {
+  MailSettings settings = 1;
+}
+
+// ========================= UPDATE MAIL SETTINGS =========================
+message UpdateMailSettingsRequest {
+  MailSettings settings = 1 [(buf.validate.field).required = true];
+}
+
+message UpdateMailSettingsResponse {
+  string message = 1;
+}

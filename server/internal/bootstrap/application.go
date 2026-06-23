@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/ankushx05/authentication/internal/modules/identity"
+	"github.com/ankushx05/authentication/internal/modules/settings"
 	"github.com/ankushx05/authentication/internal/platform/config"
 	"github.com/ankushx05/authentication/internal/platform/cookie"
 	"github.com/ankushx05/authentication/internal/platform/database"
@@ -49,10 +50,12 @@ func NewApplication() (*Application, error) {
 
 	// 4. Wire up modules
 	identityModule := identity.NewModule(d)
+	settingsModule := settings.NewModule(d)
 
 	// 5. Initialize router and register routes
 	mux := NewRouter()
 	identityModule.RegisterRoutes(mux)
+	settingsModule.RegisterRoutes(mux)
 
 	// 6. Wrap router with CORS middleware
 	handler := middleware.WithCORS(cfg.AllowedOrigins)(mux)

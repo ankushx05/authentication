@@ -3,7 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useNavigate, useRouter } from "@tanstack/react-router";
 import { loginApi } from "../api";
-import { loginSchema, type Login } from "../schemas/login.schema";
+import { loginSchema  } from "../schemas/login.schema";
+import type {Login} from "../schemas/login.schema";
 
 export type FormValues = Login;
 

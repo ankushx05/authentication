@@ -12,13 +12,10 @@ type Setting struct {
 }
 
 type MailSettings struct {
-	Host        string `json:"host"`
-	Port        int    `json:"port"`
-	Username    string `json:"username"`
-	Password    string `json:"password"`
-	Encryption  string `json:"encryption"`
-	SenderEmail string `json:"sender_email"`
-	SenderName  string `json:"sender_name"`
+	Host       string `json:"host"`
+	Username   string `json:"username"`
+	Password   string `json:"password"`
+	Encryption string `json:"encryption"`
 }
 
 // Fields of the Setting.
