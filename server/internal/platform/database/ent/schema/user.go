@@ -18,6 +18,7 @@ func (User) Fields() []ent.Field {
 		field.String("email").NotEmpty().Unique(),
 		field.String("username").NotEmpty().Unique(),
 		field.String("password").NotEmpty().Sensitive(),
+		field.Bool("is_admin").Default(false),
 	}
 }
 

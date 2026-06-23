@@ -7,6 +7,7 @@ import (
 	"entgo.io/ent/dialect/sql/schema"
 	"github.com/ankushx05/authentication/internal/platform/config"
 	"github.com/ankushx05/authentication/internal/platform/database"
+	entUser "github.com/ankushx05/authentication/internal/platform/database/ent/user"
 	"github.com/ankushx05/authentication/internal/platform/logger"
 )
 
@@ -39,6 +40,29 @@ func run() error {
 	}
 
 	log.Info("Database migrated successfully")
+
+	// Seed admin user if not exists
+	ctx := context.Background()
+	exists, err := client.User.Query().
+		Where(entUser.Email("admin@gmail.com")).
+		Exist(ctx)
+	if err != nil {
+		return fmt.Errorf("failed to query admin user: %w", err)
+	}
+
+	if !exists {
+		_, err = client.User.Create().
+			SetFullname("Admin User").
+			SetEmail("admin@gmail.com").
+			SetUsername("admin").
+			SetPassword("11111111").
+			SetIsAdmin(true).
+			Save(ctx)
+		if err != nil {
+			return fmt.Errorf("failed to seed admin user: %w", err)
+		}
+		log.Info("Admin user seeded successfully")
+	}
 
 	return nil
 }

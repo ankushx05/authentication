@@ -1,6 +1,7 @@
 package identity
 
 import (
+	admingrpc "github.com/ankushx05/authentication/internal/modules/identity/adapters/grpc/admin"
 	usergrpc "github.com/ankushx05/authentication/internal/modules/identity/adapters/grpc/user"
 	"github.com/ankushx05/authentication/internal/modules/identity/adapters/repository"
 	"github.com/ankushx05/authentication/internal/modules/identity/domain"
@@ -10,9 +11,10 @@ import (
 )
 
 type Module struct {
-	authHandler    *usergrpc.AuthHandler
-	profileHandler *usergrpc.ProfileHandler
-	tokenService   *jwt.TokenService[domain.TokenPayload]
+	authHandler      *usergrpc.AuthHandler
+	adminAuthHandler *admingrpc.AuthHandler
+	profileHandler   *usergrpc.ProfileHandler
+	tokenService     *jwt.TokenService[domain.TokenPayload]
 }
 
 func NewModule(d *deps.Deps) *Module {
@@ -21,11 +23,13 @@ func NewModule(d *deps.Deps) *Module {
 
 	tokenService := jwt.NewTokenService[domain.TokenPayload](d.Config.JwtSecret, "auth-service", d.Config.JwtExpiration)
 	authHandler := usergrpc.NewAuthHandler(service, tokenService, d.Cookie)
+	adminAuthHandler := admingrpc.NewAdminAuthHandler(service, tokenService, d.Cookie)
 	profileHandler := usergrpc.NewProfileHandler(service)
 
 	return &Module{
-		authHandler:    authHandler,
-		profileHandler: profileHandler,
-		tokenService:   tokenService,
+		authHandler:      authHandler,
+		adminAuthHandler: adminAuthHandler,
+		profileHandler:   profileHandler,
+		tokenService:     tokenService,
 	}
 }

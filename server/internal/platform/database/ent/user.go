@@ -31,7 +31,9 @@ type User struct {
 	// Username holds the value of the "username" field.
 	Username string `json:"username,omitempty"`
 	// Password holds the value of the "password" field.
-	Password     string `json:"-"`
+	Password string `json:"-"`
+	// IsAdmin holds the value of the "is_admin" field.
+	IsAdmin      bool `json:"is_admin,omitempty"`
 	selectValues sql.SelectValues
 }
 
@@ -40,6 +42,8 @@ func (*User) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
+		case user.FieldIsAdmin:
+			values[i] = new(sql.NullBool)
 		case user.FieldFullname, user.FieldEmail, user.FieldUsername, user.FieldPassword:
 			values[i] = new(sql.NullString)
 		case user.FieldCreatedAt, user.FieldUpdatedAt, user.FieldDeletedAt:
@@ -110,6 +114,12 @@ func (_m *User) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				_m.Password = value.String
 			}
+		case user.FieldIsAdmin:
+			if value, ok := values[i].(*sql.NullBool); !ok {
+				return fmt.Errorf("unexpected type %T for field is_admin", values[i])
+			} else if value.Valid {
+				_m.IsAdmin = value.Bool
+			}
 		default:
 			_m.selectValues.Set(columns[i], values[i])
 		}
@@ -167,6 +177,9 @@ func (_m *User) String() string {
 	builder.WriteString(_m.Username)
 	builder.WriteString(", ")
 	builder.WriteString("password=<sensitive>")
+	builder.WriteString(", ")
+	builder.WriteString("is_admin=")
+	builder.WriteString(fmt.Sprintf("%v", _m.IsAdmin))
 	builder.WriteByte(')')
 	return builder.String()
 }

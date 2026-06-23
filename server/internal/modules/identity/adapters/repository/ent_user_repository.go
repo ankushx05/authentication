@@ -72,6 +72,7 @@ func (r *entUserRepository) mapToDomain(u *ent.User) *domain.User {
 		Fullname:  u.Fullname,
 		Username:  u.Username,
 		Password:  u.Password,
+		IsAdmin:   u.IsAdmin,
 		CreatedAt: u.CreatedAt,
 		UpdatedAt: u.UpdatedAt,
 		DeletedAt: u.DeletedAt,

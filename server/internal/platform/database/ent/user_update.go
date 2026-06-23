@@ -110,6 +110,20 @@ func (_u *UserUpdate) SetNillablePassword(v *string) *UserUpdate {
 	return _u
 }
 
+// SetIsAdmin sets the "is_admin" field.
+func (_u *UserUpdate) SetIsAdmin(v bool) *UserUpdate {
+	_u.mutation.SetIsAdmin(v)
+	return _u
+}
+
+// SetNillableIsAdmin sets the "is_admin" field if the given value is not nil.
+func (_u *UserUpdate) SetNillableIsAdmin(v *bool) *UserUpdate {
+	if v != nil {
+		_u.SetIsAdmin(*v)
+	}
+	return _u
+}
+
 // Mutation returns the UserMutation object of the builder.
 func (_u *UserUpdate) Mutation() *UserMutation {
 	return _u.mutation
@@ -209,6 +223,9 @@ func (_u *UserUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	if value, ok := _u.mutation.Password(); ok {
 		_spec.SetField(user.FieldPassword, field.TypeString, value)
 	}
+	if value, ok := _u.mutation.IsAdmin(); ok {
+		_spec.SetField(user.FieldIsAdmin, field.TypeBool, value)
+	}
 	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{user.Label}
@@ -307,6 +324,20 @@ func (_u *UserUpdateOne) SetPassword(v string) *UserUpdateOne {
 func (_u *UserUpdateOne) SetNillablePassword(v *string) *UserUpdateOne {
 	if v != nil {
 		_u.SetPassword(*v)
+	}
+	return _u
+}
+
+// SetIsAdmin sets the "is_admin" field.
+func (_u *UserUpdateOne) SetIsAdmin(v bool) *UserUpdateOne {
+	_u.mutation.SetIsAdmin(v)
+	return _u
+}
+
+// SetNillableIsAdmin sets the "is_admin" field if the given value is not nil.
+func (_u *UserUpdateOne) SetNillableIsAdmin(v *bool) *UserUpdateOne {
+	if v != nil {
+		_u.SetIsAdmin(*v)
 	}
 	return _u
 }
@@ -439,6 +470,9 @@ func (_u *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) {
 	}
 	if value, ok := _u.mutation.Password(); ok {
 		_spec.SetField(user.FieldPassword, field.TypeString, value)
+	}
+	if value, ok := _u.mutation.IsAdmin(); ok {
+		_spec.SetField(user.FieldIsAdmin, field.TypeBool, value)
 	}
 	_node = &User{config: _u.config}
 	_spec.Assign = _node.assignValues

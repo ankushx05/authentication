@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package admin.auth.v1;
+
+import "buf/validate/validate.proto";
+
+service AuthService {
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
+}
+
+// ==================== LOGIN ====================
+message LoginRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string password = 2 [(buf.validate.field).required = true];
+}
+
+message LoginResponse {
+  string message = 1;
+}
+
+// ==================== LOGOUT ====================
+message LogoutRequest {}
+
+message LogoutResponse {
+  string message = 1;
+}

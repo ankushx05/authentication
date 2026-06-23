@@ -62,6 +62,24 @@ func (s *UserService) Login(ctx context.Context, email, password string) (*domai
 	return user, nil
 }
 
+// Admin Login
+func (s *UserService) AdminLogin(ctx context.Context, email, password string) (*domain.User, error) {
+	user, err := s.repo.GetByEmail(ctx, email)
+	if err != nil || user == nil {
+		return nil, errors.NewUnauthorized("invalid email or password")
+	}
+
+	if user.Password != password {
+		return nil, errors.NewUnauthorized("invalid email or password")
+	}
+
+	if !user.IsAdmin {
+		return nil, errors.NewUnauthorized("unauthorized: not an admin")
+	}
+
+	return user, nil
+}
+
 func (s *UserService) GetUser(ctx context.Context, id uuid.UUID) (*domain.User, error) {
 	user, err := s.repo.GetByID(ctx, id)
 	if err != nil {
