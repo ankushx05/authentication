@@ -9,7 +9,8 @@
   "dependencies": {
     "react": "catalog:",
     "react-dom": "catalog:",
-    "@react-email/components": "catalog:"
+    "@react-email/components": "catalog:",
+    "@repo/templates": "workspace:*"
   },
   "devDependencies": {
     "@react-email/ui": "catalog:",

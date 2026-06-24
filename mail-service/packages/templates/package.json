@@ -1,0 +1,26 @@
+{
+  "name": "@repo/templates",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    "./web": {
+      "types": "./src/web/index.ts",
+      "default": "./src/web/index.ts"
+    },
+    "./admin": {
+      "types": "./src/admin/index.ts",
+      "default": "./src/admin/index.ts"
+    }
+  },
+  "dependencies": {
+    "@react-email/components": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "@types/bun": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:"
+  }
+}
