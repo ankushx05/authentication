@@ -1,38 +1,35 @@
-import {
-  Body,
-  Container,
-  Head,
-  Heading,
-  Html,
-  Preview,
-  Text,
-} from "@react-email/components";
+import { Text } from "@react-email/components";
+import { AppNameText, EmailDocument } from "@repo/components";
 
-export const WelcomeEmail = () => {
+export type WelcomeEmailProps = {
+  name: string;
+  baseUrl?: string;
+};
+
+export const welcomeEmailSubject = "Welcome to our platform!";
+
+export const WelcomeEmail = ({
+  name,
+  baseUrl = "https://example.com",
+}: WelcomeEmailProps) => {
   return (
-    <Html>
-      <Head />
-      <Preview>Welcome to our platform!</Preview>
-      <Body
-        style={{
-          fontFamily: "sans-serif",
-          backgroundColor: "#f6f9fc",
-          padding: "20px",
-        }}
-      >
-        <Container
-          style={{
-            backgroundColor: "#ffffff",
-            padding: "40px",
-            borderRadius: "8px",
-          }}
-        >
-          <Heading style={{ color: "#333333" }}>Welcome to App admin!</Heading>
-          <Text style={{ color: "#555555" }}>
-            Thank you for signing up. We're excited to have you on board!
+    <EmailDocument
+      preview={`Welcome to ${AppNameText}`}
+      heading="Welcome!"
+      content={
+        <>
+          <Text>
+            Hello Admin <span className="font-semibold">{name}</span>,
           </Text>
-        </Container>
-      </Body>
-    </Html>
+          <Text>
+            Welcome to {AppNameText}! We are excited to have you on board.
+          </Text>
+          <Text>
+            You can get started by visiting our dashboard at{" "}
+            <a href={baseUrl}>{baseUrl}</a>.
+          </Text>
+        </>
+      }
+    />
   );
 };
