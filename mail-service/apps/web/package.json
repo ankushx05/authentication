@@ -1,0 +1,21 @@
+{
+  "name": "app-two",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "email dev -p 4002",
+    "export": "email export"
+  },
+  "dependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "@react-email/components": "catalog:"
+  },
+  "devDependencies": {
+    "@react-email/ui": "catalog:",
+    "react-email": "catalog:",
+    "typescript": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:"
+  }
+}
