@@ -16,7 +16,8 @@
     "@react-email/components": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "@repo/components": "workspace:*"
+    "@repo/components": "workspace:*",
+    "@repo/gen": "workspace:*"
   },
   "devDependencies": {
     "typescript": "catalog:",

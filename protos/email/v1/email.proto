@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package email.v1;
+
+enum EmailTemplate {
+  EMAIL_TEMPLATE_UNSPECIFIED = 0;
+  EMAIL_TEMPLATE_REGISTRATION_SUCCESS = 1;
+}
+
+message RegistrationSuccessProps {
+  string full_name = 1;
+  string email = 2;
+  string user_name = 3;
+}
+
+message EmailMessage {
+  string to = 1;
+  EmailTemplate template = 2;
+
+  oneof props {
+    RegistrationSuccessProps registration_success = 3;
+  }
+}
