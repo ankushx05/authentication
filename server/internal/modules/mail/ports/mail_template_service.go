@@ -14,4 +14,5 @@ type MailTemplateService interface {
 	GetMailTemplate(ctx context.Context, id uuid.UUID) (*domain.MailTemplate, error)
 	ListMailTemplates(ctx context.Context) ([]*domain.MailTemplate, error)
 	SendMail(ctx context.Context, uniqueKey string, variables map[string]string, toEmail string) error
+	GetEmailTemplateVariables() map[string][]string
 }

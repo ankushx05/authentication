@@ -99,3 +99,23 @@ func NewForbidden(message string) *ForbiddenError {
 func NewInternal(err error) *InternalError {
 	return &InternalError{Err: err}
 }
+
+// MaskedError wraps an error but exposes a generic message.
+// Useful for hiding internal error details from the client while keeping the original error for logging.
+type MaskedError struct {
+	Err     error
+	Message string
+}
+
+func (e *MaskedError) Error() string {
+	return e.Message
+}
+
+func (e *MaskedError) Unwrap() error {
+	return e.Err
+}
+
+func NewMasked(err error, msg string) *MaskedError {
+	return &MaskedError{Err: err, Message: msg}
+}
+

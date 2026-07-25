@@ -10,7 +10,33 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file admin/mail_template/v1/mail_template.proto.
  */
 export const file_admin_mail_template_v1_mail_template: GenFile = /*@__PURE__*/
-  fileDesc("CiphZG1pbi9tYWlsX3RlbXBsYXRlL3YxL21haWxfdGVtcGxhdGUucHJvdG8SFmFkbWluLm1haWxfdGVtcGxhdGUudjEivQEKDE1haWxUZW1wbGF0ZRIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEg8KB3N1YmplY3QYAyABKAkSDAoEYm9keRgEIAEoCRIRCgl2YXJpYWJsZXMYBSADKAkSOQoKdW5pcXVlX2tleRgGIAEoDjIlLmFkbWluLm1haWxfdGVtcGxhdGUudjEuRW1haWxUZW1wbGF0ZRISCgpjcmVhdGVkX2F0GAcgASgJEhIKCnVwZGF0ZWRfYXQYCCABKAkiuwEKGUNyZWF0ZU1haWxUZW1wbGF0ZVJlcXVlc3QSFQoEbmFtZRgBIAEoCUIHukgEcgIQARIYCgdzdWJqZWN0GAIgASgJQge6SARyAhABEhUKBGJvZHkYAyABKAlCB7pIBHICEAESEQoJdmFyaWFibGVzGAQgAygJEkMKCnVuaXF1ZV9rZXkYBSABKA4yJS5hZG1pbi5tYWlsX3RlbXBsYXRlLnYxLkVtYWlsVGVtcGxhdGVCCLpIBYIBAiAAImoKGkNyZWF0ZU1haWxUZW1wbGF0ZVJlc3BvbnNlEg8KB21lc3NhZ2UYASABKAkSOwoNbWFpbF90ZW1wbGF0ZRgCIAEoCzIkLmFkbWluLm1haWxfdGVtcGxhdGUudjEuTWFpbFRlbXBsYXRlItEBChlVcGRhdGVNYWlsVGVtcGxhdGVSZXF1ZXN0EhQKAmlkGAEgASgJQgi6SAVyA7ABARIVCgRuYW1lGAIgASgJQge6SARyAhABEhgKB3N1YmplY3QYAyABKAlCB7pIBHICEAESFQoEYm9keRgEIAEoCUIHukgEcgIQARIRCgl2YXJpYWJsZXMYBSADKAkSQwoKdW5pcXVlX2tleRgGIAEoDjIlLmFkbWluLm1haWxfdGVtcGxhdGUudjEuRW1haWxUZW1wbGF0ZUIIukgFggECIAAiagoaVXBkYXRlTWFpbFRlbXBsYXRlUmVzcG9uc2USDwoHbWVzc2FnZRgBIAEoCRI7Cg1tYWlsX3RlbXBsYXRlGAIgASgLMiQuYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5NYWlsVGVtcGxhdGUiMQoZRGVsZXRlTWFpbFRlbXBsYXRlUmVxdWVzdBIUCgJpZBgBIAEoCUIIukgFcgOwAQEiLQoaRGVsZXRlTWFpbFRlbXBsYXRlUmVzcG9uc2USDwoHbWVzc2FnZRgBIAEoCSIuChZHZXRNYWlsVGVtcGxhdGVSZXF1ZXN0EhQKAmlkGAEgASgJQgi6SAVyA7ABASJWChdHZXRNYWlsVGVtcGxhdGVSZXNwb25zZRI7Cg1tYWlsX3RlbXBsYXRlGAEgASgLMiQuYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5NYWlsVGVtcGxhdGUiGgoYTGlzdE1haWxUZW1wbGF0ZXNSZXF1ZXN0IlkKGUxpc3RNYWlsVGVtcGxhdGVzUmVzcG9uc2USPAoObWFpbF90ZW1wbGF0ZXMYASADKAsyJC5hZG1pbi5tYWlsX3RlbXBsYXRlLnYxLk1haWxUZW1wbGF0ZSq5AQoNRW1haWxUZW1wbGF0ZRIeChpFTUFJTF9URU1QTEFURV9VTlNQRUNJRklFRBAAEh4KGkVNQUlMX1RFTVBMQVRFX0FETUlOX0xPR0lOEAESHQoZRU1BSUxfVEVNUExBVEVfVVNFUl9MT0dJThACEiAKHEVNQUlMX1RFTVBMQVRFX1VTRVJfUkVHSVNURVIQAxInCiNFTUFJTF9URU1QTEFURV9VU0VSX0ZPUkdPVF9QQVNTV09SRBAEMvoEChNNYWlsVGVtcGxhdGVTZXJ2aWNlEnsKEkNyZWF0ZU1haWxUZW1wbGF0ZRIxLmFkbWluLm1haWxfdGVtcGxhdGUudjEuQ3JlYXRlTWFpbFRlbXBsYXRlUmVxdWVzdBoyLmFkbWluLm1haWxfdGVtcGxhdGUudjEuQ3JlYXRlTWFpbFRlbXBsYXRlUmVzcG9uc2USewoSVXBkYXRlTWFpbFRlbXBsYXRlEjEuYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5VcGRhdGVNYWlsVGVtcGxhdGVSZXF1ZXN0GjIuYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5VcGRhdGVNYWlsVGVtcGxhdGVSZXNwb25zZRJ7ChJEZWxldGVNYWlsVGVtcGxhdGUSMS5hZG1pbi5tYWlsX3RlbXBsYXRlLnYxLkRlbGV0ZU1haWxUZW1wbGF0ZVJlcXVlc3QaMi5hZG1pbi5tYWlsX3RlbXBsYXRlLnYxLkRlbGV0ZU1haWxUZW1wbGF0ZVJlc3BvbnNlEnIKD0dldE1haWxUZW1wbGF0ZRIuLmFkbWluLm1haWxfdGVtcGxhdGUudjEuR2V0TWFpbFRlbXBsYXRlUmVxdWVzdBovLmFkbWluLm1haWxfdGVtcGxhdGUudjEuR2V0TWFpbFRlbXBsYXRlUmVzcG9uc2USeAoRTGlzdE1haWxUZW1wbGF0ZXMSMC5hZG1pbi5tYWlsX3RlbXBsYXRlLnYxLkxpc3RNYWlsVGVtcGxhdGVzUmVxdWVzdBoxLmFkbWluLm1haWxfdGVtcGxhdGUudjEuTGlzdE1haWxUZW1wbGF0ZXNSZXNwb25zZWIGcHJvdG8z");
+  fileDesc("CiphZG1pbi9tYWlsX3RlbXBsYXRlL3YxL21haWxfdGVtcGxhdGUucHJvdG8SFmFkbWluLm1haWxfdGVtcGxhdGUudjEiZwoZRW1haWxUZW1wbGF0ZVZhcmlhYmxlSW5mbxI3Cgh0ZW1wbGF0ZRgBIAEoDjIlLmFkbWluLm1haWxfdGVtcGxhdGUudjEuRW1haWxUZW1wbGF0ZRIRCgl2YXJpYWJsZXMYAiADKAkivQEKDE1haWxUZW1wbGF0ZRIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEg8KB3N1YmplY3QYAyABKAkSDAoEYm9keRgEIAEoCRIRCgl2YXJpYWJsZXMYBSADKAkSOQoKdW5pcXVlX2tleRgGIAEoDjIlLmFkbWluLm1haWxfdGVtcGxhdGUudjEuRW1haWxUZW1wbGF0ZRISCgpjcmVhdGVkX2F0GAcgASgJEhIKCnVwZGF0ZWRfYXQYCCABKAkiuwEKGUNyZWF0ZU1haWxUZW1wbGF0ZVJlcXVlc3QSFQoEbmFtZRgBIAEoCUIHukgEcgIQARIYCgdzdWJqZWN0GAIgASgJQge6SARyAhABEhUKBGJvZHkYAyABKAlCB7pIBHICEAESEQoJdmFyaWFibGVzGAQgAygJEkMKCnVuaXF1ZV9rZXkYBSABKA4yJS5hZG1pbi5tYWlsX3RlbXBsYXRlLnYxLkVtYWlsVGVtcGxhdGVCCLpIBYIBAiAAImoKGkNyZWF0ZU1haWxUZW1wbGF0ZVJlc3BvbnNlEg8KB21lc3NhZ2UYASABKAkSOwoNbWFpbF90ZW1wbGF0ZRgCIAEoCzIkLmFkbWluLm1haWxfdGVtcGxhdGUudjEuTWFpbFRlbXBsYXRlItEBChlVcGRhdGVNYWlsVGVtcGxhdGVSZXF1ZXN0EhQKAmlkGAEgASgJQgi6SAVyA7ABARIVCgRuYW1lGAIgASgJQge6SARyAhABEhgKB3N1YmplY3QYAyABKAlCB7pIBHICEAESFQoEYm9keRgEIAEoCUIHukgEcgIQARIRCgl2YXJpYWJsZXMYBSADKAkSQwoKdW5pcXVlX2tleRgGIAEoDjIlLmFkbWluLm1haWxfdGVtcGxhdGUudjEuRW1haWxUZW1wbGF0ZUIIukgFggECIAAiagoaVXBkYXRlTWFpbFRlbXBsYXRlUmVzcG9uc2USDwoHbWVzc2FnZRgBIAEoCRI7Cg1tYWlsX3RlbXBsYXRlGAIgASgLMiQuYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5NYWlsVGVtcGxhdGUiMQoZRGVsZXRlTWFpbFRlbXBsYXRlUmVxdWVzdBIUCgJpZBgBIAEoCUIIukgFcgOwAQEiLQoaRGVsZXRlTWFpbFRlbXBsYXRlUmVzcG9uc2USDwoHbWVzc2FnZRgBIAEoCSIuChZHZXRNYWlsVGVtcGxhdGVSZXF1ZXN0EhQKAmlkGAEgASgJQgi6SAVyA7ABASJWChdHZXRNYWlsVGVtcGxhdGVSZXNwb25zZRI7Cg1tYWlsX3RlbXBsYXRlGAEgASgLMiQuYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5NYWlsVGVtcGxhdGUiGgoYTGlzdE1haWxUZW1wbGF0ZXNSZXF1ZXN0IlkKGUxpc3RNYWlsVGVtcGxhdGVzUmVzcG9uc2USPAoObWFpbF90ZW1wbGF0ZXMYASADKAsyJC5hZG1pbi5tYWlsX3RlbXBsYXRlLnYxLk1haWxUZW1wbGF0ZSIiCiBHZXRFbWFpbFRlbXBsYXRlVmFyaWFibGVzUmVxdWVzdCJyCiFHZXRFbWFpbFRlbXBsYXRlVmFyaWFibGVzUmVzcG9uc2USTQoSdGVtcGxhdGVfdmFyaWFibGVzGAEgAygLMjEuYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5FbWFpbFRlbXBsYXRlVmFyaWFibGVJbmZvKrkBCg1FbWFpbFRlbXBsYXRlEh4KGkVNQUlMX1RFTVBMQVRFX1VOU1BFQ0lGSUVEEAASHgoaRU1BSUxfVEVNUExBVEVfQURNSU5fTE9HSU4QARIdChlFTUFJTF9URU1QTEFURV9VU0VSX0xPR0lOEAISIAocRU1BSUxfVEVNUExBVEVfVVNFUl9SRUdJU1RFUhADEicKI0VNQUlMX1RFTVBMQVRFX1VTRVJfRk9SR09UX1BBU1NXT1JEEAQyjQYKE01haWxUZW1wbGF0ZVNlcnZpY2USewoSQ3JlYXRlTWFpbFRlbXBsYXRlEjEuYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5DcmVhdGVNYWlsVGVtcGxhdGVSZXF1ZXN0GjIuYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5DcmVhdGVNYWlsVGVtcGxhdGVSZXNwb25zZRJ7ChJVcGRhdGVNYWlsVGVtcGxhdGUSMS5hZG1pbi5tYWlsX3RlbXBsYXRlLnYxLlVwZGF0ZU1haWxUZW1wbGF0ZVJlcXVlc3QaMi5hZG1pbi5tYWlsX3RlbXBsYXRlLnYxLlVwZGF0ZU1haWxUZW1wbGF0ZVJlc3BvbnNlEnsKEkRlbGV0ZU1haWxUZW1wbGF0ZRIxLmFkbWluLm1haWxfdGVtcGxhdGUudjEuRGVsZXRlTWFpbFRlbXBsYXRlUmVxdWVzdBoyLmFkbWluLm1haWxfdGVtcGxhdGUudjEuRGVsZXRlTWFpbFRlbXBsYXRlUmVzcG9uc2UScgoPR2V0TWFpbFRlbXBsYXRlEi4uYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5HZXRNYWlsVGVtcGxhdGVSZXF1ZXN0Gi8uYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5HZXRNYWlsVGVtcGxhdGVSZXNwb25zZRJ4ChFMaXN0TWFpbFRlbXBsYXRlcxIwLmFkbWluLm1haWxfdGVtcGxhdGUudjEuTGlzdE1haWxUZW1wbGF0ZXNSZXF1ZXN0GjEuYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5MaXN0TWFpbFRlbXBsYXRlc1Jlc3BvbnNlEpABChlHZXRFbWFpbFRlbXBsYXRlVmFyaWFibGVzEjguYWRtaW4ubWFpbF90ZW1wbGF0ZS52MS5HZXRFbWFpbFRlbXBsYXRlVmFyaWFibGVzUmVxdWVzdBo5LmFkbWluLm1haWxfdGVtcGxhdGUudjEuR2V0RW1haWxUZW1wbGF0ZVZhcmlhYmxlc1Jlc3BvbnNlYgZwcm90bzM");
+
+/**
+ * ========================= EMAIL TEMPLATE VARIABLE INFO =========================
+ * Defines the accepted variables for each email template type.
+ * This is the single source of truth for variable names per template.
+ *
+ * @generated from message admin.mail_template.v1.EmailTemplateVariableInfo
+ */
+export type EmailTemplateVariableInfo = Message<"admin.mail_template.v1.EmailTemplateVariableInfo"> & {
+  /**
+   * @generated from field: admin.mail_template.v1.EmailTemplate template = 1;
+   */
+  template: EmailTemplate;
+
+  /**
+   * @generated from field: repeated string variables = 2;
+   */
+  variables: string[];
+};
+
+/**
+ * Describes the message admin.mail_template.v1.EmailTemplateVariableInfo.
+ * Use `create(EmailTemplateVariableInfoSchema)` to create a new message.
+ */
+export const EmailTemplateVariableInfoSchema: GenMessage<EmailTemplateVariableInfo> = /*@__PURE__*/
+  messageDesc(file_admin_mail_template_v1_mail_template, 0);
 
 /**
  * ========================= MAIL TEMPLATE MESSAGE =========================
@@ -64,7 +90,7 @@ export type MailTemplate = Message<"admin.mail_template.v1.MailTemplate"> & {
  * Use `create(MailTemplateSchema)` to create a new message.
  */
 export const MailTemplateSchema: GenMessage<MailTemplate> = /*@__PURE__*/
-  messageDesc(file_admin_mail_template_v1_mail_template, 0);
+  messageDesc(file_admin_mail_template_v1_mail_template, 1);
 
 /**
  * ========================= CREATE =========================
@@ -103,7 +129,7 @@ export type CreateMailTemplateRequest = Message<"admin.mail_template.v1.CreateMa
  * Use `create(CreateMailTemplateRequestSchema)` to create a new message.
  */
 export const CreateMailTemplateRequestSchema: GenMessage<CreateMailTemplateRequest> = /*@__PURE__*/
-  messageDesc(file_admin_mail_template_v1_mail_template, 1);
+  messageDesc(file_admin_mail_template_v1_mail_template, 2);
 
 /**
  * @generated from message admin.mail_template.v1.CreateMailTemplateResponse
@@ -125,7 +151,7 @@ export type CreateMailTemplateResponse = Message<"admin.mail_template.v1.CreateM
  * Use `create(CreateMailTemplateResponseSchema)` to create a new message.
  */
 export const CreateMailTemplateResponseSchema: GenMessage<CreateMailTemplateResponse> = /*@__PURE__*/
-  messageDesc(file_admin_mail_template_v1_mail_template, 2);
+  messageDesc(file_admin_mail_template_v1_mail_template, 3);
 
 /**
  * ========================= UPDATE =========================
@@ -169,7 +195,7 @@ export type UpdateMailTemplateRequest = Message<"admin.mail_template.v1.UpdateMa
  * Use `create(UpdateMailTemplateRequestSchema)` to create a new message.
  */
 export const UpdateMailTemplateRequestSchema: GenMessage<UpdateMailTemplateRequest> = /*@__PURE__*/
-  messageDesc(file_admin_mail_template_v1_mail_template, 3);
+  messageDesc(file_admin_mail_template_v1_mail_template, 4);
 
 /**
  * @generated from message admin.mail_template.v1.UpdateMailTemplateResponse
@@ -191,7 +217,7 @@ export type UpdateMailTemplateResponse = Message<"admin.mail_template.v1.UpdateM
  * Use `create(UpdateMailTemplateResponseSchema)` to create a new message.
  */
 export const UpdateMailTemplateResponseSchema: GenMessage<UpdateMailTemplateResponse> = /*@__PURE__*/
-  messageDesc(file_admin_mail_template_v1_mail_template, 4);
+  messageDesc(file_admin_mail_template_v1_mail_template, 5);
 
 /**
  * ========================= DELETE =========================
@@ -210,7 +236,7 @@ export type DeleteMailTemplateRequest = Message<"admin.mail_template.v1.DeleteMa
  * Use `create(DeleteMailTemplateRequestSchema)` to create a new message.
  */
 export const DeleteMailTemplateRequestSchema: GenMessage<DeleteMailTemplateRequest> = /*@__PURE__*/
-  messageDesc(file_admin_mail_template_v1_mail_template, 5);
+  messageDesc(file_admin_mail_template_v1_mail_template, 6);
 
 /**
  * @generated from message admin.mail_template.v1.DeleteMailTemplateResponse
@@ -227,7 +253,7 @@ export type DeleteMailTemplateResponse = Message<"admin.mail_template.v1.DeleteM
  * Use `create(DeleteMailTemplateResponseSchema)` to create a new message.
  */
 export const DeleteMailTemplateResponseSchema: GenMessage<DeleteMailTemplateResponse> = /*@__PURE__*/
-  messageDesc(file_admin_mail_template_v1_mail_template, 6);
+  messageDesc(file_admin_mail_template_v1_mail_template, 7);
 
 /**
  * ========================= GET =========================
@@ -246,7 +272,7 @@ export type GetMailTemplateRequest = Message<"admin.mail_template.v1.GetMailTemp
  * Use `create(GetMailTemplateRequestSchema)` to create a new message.
  */
 export const GetMailTemplateRequestSchema: GenMessage<GetMailTemplateRequest> = /*@__PURE__*/
-  messageDesc(file_admin_mail_template_v1_mail_template, 7);
+  messageDesc(file_admin_mail_template_v1_mail_template, 8);
 
 /**
  * @generated from message admin.mail_template.v1.GetMailTemplateResponse
@@ -263,7 +289,7 @@ export type GetMailTemplateResponse = Message<"admin.mail_template.v1.GetMailTem
  * Use `create(GetMailTemplateResponseSchema)` to create a new message.
  */
 export const GetMailTemplateResponseSchema: GenMessage<GetMailTemplateResponse> = /*@__PURE__*/
-  messageDesc(file_admin_mail_template_v1_mail_template, 8);
+  messageDesc(file_admin_mail_template_v1_mail_template, 9);
 
 /**
  * ========================= LIST =========================
@@ -278,7 +304,7 @@ export type ListMailTemplatesRequest = Message<"admin.mail_template.v1.ListMailT
  * Use `create(ListMailTemplatesRequestSchema)` to create a new message.
  */
 export const ListMailTemplatesRequestSchema: GenMessage<ListMailTemplatesRequest> = /*@__PURE__*/
-  messageDesc(file_admin_mail_template_v1_mail_template, 9);
+  messageDesc(file_admin_mail_template_v1_mail_template, 10);
 
 /**
  * @generated from message admin.mail_template.v1.ListMailTemplatesResponse
@@ -295,7 +321,39 @@ export type ListMailTemplatesResponse = Message<"admin.mail_template.v1.ListMail
  * Use `create(ListMailTemplatesResponseSchema)` to create a new message.
  */
 export const ListMailTemplatesResponseSchema: GenMessage<ListMailTemplatesResponse> = /*@__PURE__*/
-  messageDesc(file_admin_mail_template_v1_mail_template, 10);
+  messageDesc(file_admin_mail_template_v1_mail_template, 11);
+
+/**
+ * ========================= GET EMAIL TEMPLATE VARIABLES =========================
+ *
+ * @generated from message admin.mail_template.v1.GetEmailTemplateVariablesRequest
+ */
+export type GetEmailTemplateVariablesRequest = Message<"admin.mail_template.v1.GetEmailTemplateVariablesRequest"> & {
+};
+
+/**
+ * Describes the message admin.mail_template.v1.GetEmailTemplateVariablesRequest.
+ * Use `create(GetEmailTemplateVariablesRequestSchema)` to create a new message.
+ */
+export const GetEmailTemplateVariablesRequestSchema: GenMessage<GetEmailTemplateVariablesRequest> = /*@__PURE__*/
+  messageDesc(file_admin_mail_template_v1_mail_template, 12);
+
+/**
+ * @generated from message admin.mail_template.v1.GetEmailTemplateVariablesResponse
+ */
+export type GetEmailTemplateVariablesResponse = Message<"admin.mail_template.v1.GetEmailTemplateVariablesResponse"> & {
+  /**
+   * @generated from field: repeated admin.mail_template.v1.EmailTemplateVariableInfo template_variables = 1;
+   */
+  templateVariables: EmailTemplateVariableInfo[];
+};
+
+/**
+ * Describes the message admin.mail_template.v1.GetEmailTemplateVariablesResponse.
+ * Use `create(GetEmailTemplateVariablesResponseSchema)` to create a new message.
+ */
+export const GetEmailTemplateVariablesResponseSchema: GenMessage<GetEmailTemplateVariablesResponse> = /*@__PURE__*/
+  messageDesc(file_admin_mail_template_v1_mail_template, 13);
 
 /**
  * ========================= EMAIL TEMPLATE ENUM =========================
@@ -380,6 +438,14 @@ export const MailTemplateService: GenService<{
     methodKind: "unary";
     input: typeof ListMailTemplatesRequestSchema;
     output: typeof ListMailTemplatesResponseSchema;
+  },
+  /**
+   * @generated from rpc admin.mail_template.v1.MailTemplateService.GetEmailTemplateVariables
+   */
+  getEmailTemplateVariables: {
+    methodKind: "unary";
+    input: typeof GetEmailTemplateVariablesRequestSchema;
+    output: typeof GetEmailTemplateVariablesResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_admin_mail_template_v1_mail_template, 0);

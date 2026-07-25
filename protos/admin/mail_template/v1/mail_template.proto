@@ -13,6 +13,14 @@ enum EmailTemplate {
   EMAIL_TEMPLATE_USER_FORGOT_PASSWORD = 4;
 }
 
+// ========================= EMAIL TEMPLATE VARIABLE INFO =========================
+// Defines the accepted variables for each email template type.
+// This is the single source of truth for variable names per template.
+message EmailTemplateVariableInfo {
+  EmailTemplate template = 1;
+  repeated string variables = 2;
+}
+
 // ========================= SERVICE =========================
 service MailTemplateService {
   rpc CreateMailTemplate(CreateMailTemplateRequest) returns (CreateMailTemplateResponse);
@@ -20,6 +28,7 @@ service MailTemplateService {
   rpc DeleteMailTemplate(DeleteMailTemplateRequest) returns (DeleteMailTemplateResponse);
   rpc GetMailTemplate(GetMailTemplateRequest) returns (GetMailTemplateResponse);
   rpc ListMailTemplates(ListMailTemplatesRequest) returns (ListMailTemplatesResponse);
+  rpc GetEmailTemplateVariables(GetEmailTemplateVariablesRequest) returns (GetEmailTemplateVariablesResponse);
 }
 
 // ========================= MAIL TEMPLATE MESSAGE =========================
@@ -86,4 +95,11 @@ message ListMailTemplatesRequest {}
 
 message ListMailTemplatesResponse {
   repeated MailTemplate mail_templates = 1;
+}
+
+// ========================= GET EMAIL TEMPLATE VARIABLES =========================
+message GetEmailTemplateVariablesRequest {}
+
+message GetEmailTemplateVariablesResponse {
+  repeated EmailTemplateVariableInfo template_variables = 1;
 }

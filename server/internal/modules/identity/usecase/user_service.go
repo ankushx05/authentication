@@ -3,6 +3,7 @@ package usecase
 import (
 	"context"
 
+	mailtemplatev1 "github.com/ankushx05/authentication/gen/proto/admin/mail_template/v1"
 	"github.com/ankushx05/authentication/internal/modules/identity/domain"
 	"github.com/ankushx05/authentication/internal/modules/identity/ports"
 	mailPorts "github.com/ankushx05/authentication/internal/modules/mail/ports"
@@ -48,7 +49,7 @@ func (s *UserService) CreateUser(ctx context.Context, fullname, email, username,
 
 	// Send user register email using EMAIL_TEMPLATE_USER_REGISTER
 	if s.mailService != nil {
-		err := s.mailService.SendMail(ctx, "EMAIL_TEMPLATE_USER_REGISTER", map[string]string{
+		err := s.mailService.SendMail(ctx, mailtemplatev1.EmailTemplate_EMAIL_TEMPLATE_USER_REGISTER.String(), map[string]string{
 			"name":     user.Fullname,
 			"email":    user.Email,
 			"username": user.Username,

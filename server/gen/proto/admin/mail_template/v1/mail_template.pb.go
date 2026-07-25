@@ -78,6 +78,61 @@ func (EmailTemplate) EnumDescriptor() ([]byte, []int) {
 	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{0}
 }
 
+// ========================= EMAIL TEMPLATE VARIABLE INFO =========================
+// Defines the accepted variables for each email template type.
+// This is the single source of truth for variable names per template.
+type EmailTemplateVariableInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Template      EmailTemplate          `protobuf:"varint,1,opt,name=template,proto3,enum=admin.mail_template.v1.EmailTemplate" json:"template,omitempty"`
+	Variables     []string               `protobuf:"bytes,2,rep,name=variables,proto3" json:"variables,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EmailTemplateVariableInfo) Reset() {
+	*x = EmailTemplateVariableInfo{}
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EmailTemplateVariableInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EmailTemplateVariableInfo) ProtoMessage() {}
+
+func (x *EmailTemplateVariableInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EmailTemplateVariableInfo.ProtoReflect.Descriptor instead.
+func (*EmailTemplateVariableInfo) Descriptor() ([]byte, []int) {
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *EmailTemplateVariableInfo) GetTemplate() EmailTemplate {
+	if x != nil {
+		return x.Template
+	}
+	return EmailTemplate_EMAIL_TEMPLATE_UNSPECIFIED
+}
+
+func (x *EmailTemplateVariableInfo) GetVariables() []string {
+	if x != nil {
+		return x.Variables
+	}
+	return nil
+}
+
 // ========================= MAIL TEMPLATE MESSAGE =========================
 type MailTemplate struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -95,7 +150,7 @@ type MailTemplate struct {
 
 func (x *MailTemplate) Reset() {
 	*x = MailTemplate{}
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[0]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -107,7 +162,7 @@ func (x *MailTemplate) String() string {
 func (*MailTemplate) ProtoMessage() {}
 
 func (x *MailTemplate) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[0]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120,7 +175,7 @@ func (x *MailTemplate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MailTemplate.ProtoReflect.Descriptor instead.
 func (*MailTemplate) Descriptor() ([]byte, []int) {
-	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{0}
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *MailTemplate) GetId() string {
@@ -193,7 +248,7 @@ type CreateMailTemplateRequest struct {
 
 func (x *CreateMailTemplateRequest) Reset() {
 	*x = CreateMailTemplateRequest{}
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[1]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -205,7 +260,7 @@ func (x *CreateMailTemplateRequest) String() string {
 func (*CreateMailTemplateRequest) ProtoMessage() {}
 
 func (x *CreateMailTemplateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[1]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -218,7 +273,7 @@ func (x *CreateMailTemplateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateMailTemplateRequest.ProtoReflect.Descriptor instead.
 func (*CreateMailTemplateRequest) Descriptor() ([]byte, []int) {
-	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{1}
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CreateMailTemplateRequest) GetName() string {
@@ -266,7 +321,7 @@ type CreateMailTemplateResponse struct {
 
 func (x *CreateMailTemplateResponse) Reset() {
 	*x = CreateMailTemplateResponse{}
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[2]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -278,7 +333,7 @@ func (x *CreateMailTemplateResponse) String() string {
 func (*CreateMailTemplateResponse) ProtoMessage() {}
 
 func (x *CreateMailTemplateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[2]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -291,7 +346,7 @@ func (x *CreateMailTemplateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateMailTemplateResponse.ProtoReflect.Descriptor instead.
 func (*CreateMailTemplateResponse) Descriptor() ([]byte, []int) {
-	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{2}
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CreateMailTemplateResponse) GetMessage() string {
@@ -323,7 +378,7 @@ type UpdateMailTemplateRequest struct {
 
 func (x *UpdateMailTemplateRequest) Reset() {
 	*x = UpdateMailTemplateRequest{}
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[3]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -335,7 +390,7 @@ func (x *UpdateMailTemplateRequest) String() string {
 func (*UpdateMailTemplateRequest) ProtoMessage() {}
 
 func (x *UpdateMailTemplateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[3]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -348,7 +403,7 @@ func (x *UpdateMailTemplateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateMailTemplateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateMailTemplateRequest) Descriptor() ([]byte, []int) {
-	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{3}
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *UpdateMailTemplateRequest) GetId() string {
@@ -403,7 +458,7 @@ type UpdateMailTemplateResponse struct {
 
 func (x *UpdateMailTemplateResponse) Reset() {
 	*x = UpdateMailTemplateResponse{}
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[4]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -415,7 +470,7 @@ func (x *UpdateMailTemplateResponse) String() string {
 func (*UpdateMailTemplateResponse) ProtoMessage() {}
 
 func (x *UpdateMailTemplateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[4]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -428,7 +483,7 @@ func (x *UpdateMailTemplateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateMailTemplateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateMailTemplateResponse) Descriptor() ([]byte, []int) {
-	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{4}
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UpdateMailTemplateResponse) GetMessage() string {
@@ -455,7 +510,7 @@ type DeleteMailTemplateRequest struct {
 
 func (x *DeleteMailTemplateRequest) Reset() {
 	*x = DeleteMailTemplateRequest{}
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[5]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -467,7 +522,7 @@ func (x *DeleteMailTemplateRequest) String() string {
 func (*DeleteMailTemplateRequest) ProtoMessage() {}
 
 func (x *DeleteMailTemplateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[5]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -480,7 +535,7 @@ func (x *DeleteMailTemplateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteMailTemplateRequest.ProtoReflect.Descriptor instead.
 func (*DeleteMailTemplateRequest) Descriptor() ([]byte, []int) {
-	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{5}
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DeleteMailTemplateRequest) GetId() string {
@@ -499,7 +554,7 @@ type DeleteMailTemplateResponse struct {
 
 func (x *DeleteMailTemplateResponse) Reset() {
 	*x = DeleteMailTemplateResponse{}
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[6]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -511,7 +566,7 @@ func (x *DeleteMailTemplateResponse) String() string {
 func (*DeleteMailTemplateResponse) ProtoMessage() {}
 
 func (x *DeleteMailTemplateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[6]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -524,7 +579,7 @@ func (x *DeleteMailTemplateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteMailTemplateResponse.ProtoReflect.Descriptor instead.
 func (*DeleteMailTemplateResponse) Descriptor() ([]byte, []int) {
-	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{6}
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DeleteMailTemplateResponse) GetMessage() string {
@@ -544,7 +599,7 @@ type GetMailTemplateRequest struct {
 
 func (x *GetMailTemplateRequest) Reset() {
 	*x = GetMailTemplateRequest{}
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[7]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -556,7 +611,7 @@ func (x *GetMailTemplateRequest) String() string {
 func (*GetMailTemplateRequest) ProtoMessage() {}
 
 func (x *GetMailTemplateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[7]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -569,7 +624,7 @@ func (x *GetMailTemplateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMailTemplateRequest.ProtoReflect.Descriptor instead.
 func (*GetMailTemplateRequest) Descriptor() ([]byte, []int) {
-	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{7}
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetMailTemplateRequest) GetId() string {
@@ -588,7 +643,7 @@ type GetMailTemplateResponse struct {
 
 func (x *GetMailTemplateResponse) Reset() {
 	*x = GetMailTemplateResponse{}
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[8]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -600,7 +655,7 @@ func (x *GetMailTemplateResponse) String() string {
 func (*GetMailTemplateResponse) ProtoMessage() {}
 
 func (x *GetMailTemplateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[8]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -613,7 +668,7 @@ func (x *GetMailTemplateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMailTemplateResponse.ProtoReflect.Descriptor instead.
 func (*GetMailTemplateResponse) Descriptor() ([]byte, []int) {
-	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{8}
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetMailTemplateResponse) GetMailTemplate() *MailTemplate {
@@ -632,7 +687,7 @@ type ListMailTemplatesRequest struct {
 
 func (x *ListMailTemplatesRequest) Reset() {
 	*x = ListMailTemplatesRequest{}
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[9]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -644,7 +699,7 @@ func (x *ListMailTemplatesRequest) String() string {
 func (*ListMailTemplatesRequest) ProtoMessage() {}
 
 func (x *ListMailTemplatesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[9]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -657,7 +712,7 @@ func (x *ListMailTemplatesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMailTemplatesRequest.ProtoReflect.Descriptor instead.
 func (*ListMailTemplatesRequest) Descriptor() ([]byte, []int) {
-	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{9}
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{10}
 }
 
 type ListMailTemplatesResponse struct {
@@ -669,7 +724,7 @@ type ListMailTemplatesResponse struct {
 
 func (x *ListMailTemplatesResponse) Reset() {
 	*x = ListMailTemplatesResponse{}
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[10]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -681,7 +736,7 @@ func (x *ListMailTemplatesResponse) String() string {
 func (*ListMailTemplatesResponse) ProtoMessage() {}
 
 func (x *ListMailTemplatesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[10]
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -694,7 +749,7 @@ func (x *ListMailTemplatesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMailTemplatesResponse.ProtoReflect.Descriptor instead.
 func (*ListMailTemplatesResponse) Descriptor() ([]byte, []int) {
-	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{10}
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListMailTemplatesResponse) GetMailTemplates() []*MailTemplate {
@@ -704,11 +759,95 @@ func (x *ListMailTemplatesResponse) GetMailTemplates() []*MailTemplate {
 	return nil
 }
 
+// ========================= GET EMAIL TEMPLATE VARIABLES =========================
+type GetEmailTemplateVariablesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetEmailTemplateVariablesRequest) Reset() {
+	*x = GetEmailTemplateVariablesRequest{}
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEmailTemplateVariablesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEmailTemplateVariablesRequest) ProtoMessage() {}
+
+func (x *GetEmailTemplateVariablesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEmailTemplateVariablesRequest.ProtoReflect.Descriptor instead.
+func (*GetEmailTemplateVariablesRequest) Descriptor() ([]byte, []int) {
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{12}
+}
+
+type GetEmailTemplateVariablesResponse struct {
+	state             protoimpl.MessageState       `protogen:"open.v1"`
+	TemplateVariables []*EmailTemplateVariableInfo `protobuf:"bytes,1,rep,name=template_variables,json=templateVariables,proto3" json:"template_variables,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *GetEmailTemplateVariablesResponse) Reset() {
+	*x = GetEmailTemplateVariablesResponse{}
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEmailTemplateVariablesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEmailTemplateVariablesResponse) ProtoMessage() {}
+
+func (x *GetEmailTemplateVariablesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_mail_template_v1_mail_template_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEmailTemplateVariablesResponse.ProtoReflect.Descriptor instead.
+func (*GetEmailTemplateVariablesResponse) Descriptor() ([]byte, []int) {
+	return file_admin_mail_template_v1_mail_template_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetEmailTemplateVariablesResponse) GetTemplateVariables() []*EmailTemplateVariableInfo {
+	if x != nil {
+		return x.TemplateVariables
+	}
+	return nil
+}
+
 var File_admin_mail_template_v1_mail_template_proto protoreflect.FileDescriptor
 
 const file_admin_mail_template_v1_mail_template_proto_rawDesc = "" +
 	"\n" +
-	"*admin/mail_template/v1/mail_template.proto\x12\x16admin.mail_template.v1\x1a\x1bbuf/validate/validate.proto\"\x82\x02\n" +
+	"*admin/mail_template/v1/mail_template.proto\x12\x16admin.mail_template.v1\x1a\x1bbuf/validate/validate.proto\"|\n" +
+	"\x19EmailTemplateVariableInfo\x12A\n" +
+	"\btemplate\x18\x01 \x01(\x0e2%.admin.mail_template.v1.EmailTemplateR\btemplate\x12\x1c\n" +
+	"\tvariables\x18\x02 \x03(\tR\tvariables\"\x82\x02\n" +
 	"\fMailTemplate\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
@@ -752,19 +891,23 @@ const file_admin_mail_template_v1_mail_template_proto_rawDesc = "" +
 	"\rmail_template\x18\x01 \x01(\v2$.admin.mail_template.v1.MailTemplateR\fmailTemplate\"\x1a\n" +
 	"\x18ListMailTemplatesRequest\"h\n" +
 	"\x19ListMailTemplatesResponse\x12K\n" +
-	"\x0email_templates\x18\x01 \x03(\v2$.admin.mail_template.v1.MailTemplateR\rmailTemplates*\xb9\x01\n" +
+	"\x0email_templates\x18\x01 \x03(\v2$.admin.mail_template.v1.MailTemplateR\rmailTemplates\"\"\n" +
+	" GetEmailTemplateVariablesRequest\"\x85\x01\n" +
+	"!GetEmailTemplateVariablesResponse\x12`\n" +
+	"\x12template_variables\x18\x01 \x03(\v21.admin.mail_template.v1.EmailTemplateVariableInfoR\x11templateVariables*\xb9\x01\n" +
 	"\rEmailTemplate\x12\x1e\n" +
 	"\x1aEMAIL_TEMPLATE_UNSPECIFIED\x10\x00\x12\x1e\n" +
 	"\x1aEMAIL_TEMPLATE_ADMIN_LOGIN\x10\x01\x12\x1d\n" +
 	"\x19EMAIL_TEMPLATE_USER_LOGIN\x10\x02\x12 \n" +
 	"\x1cEMAIL_TEMPLATE_USER_REGISTER\x10\x03\x12'\n" +
-	"#EMAIL_TEMPLATE_USER_FORGOT_PASSWORD\x10\x042\xfa\x04\n" +
+	"#EMAIL_TEMPLATE_USER_FORGOT_PASSWORD\x10\x042\x8d\x06\n" +
 	"\x13MailTemplateService\x12{\n" +
 	"\x12CreateMailTemplate\x121.admin.mail_template.v1.CreateMailTemplateRequest\x1a2.admin.mail_template.v1.CreateMailTemplateResponse\x12{\n" +
 	"\x12UpdateMailTemplate\x121.admin.mail_template.v1.UpdateMailTemplateRequest\x1a2.admin.mail_template.v1.UpdateMailTemplateResponse\x12{\n" +
 	"\x12DeleteMailTemplate\x121.admin.mail_template.v1.DeleteMailTemplateRequest\x1a2.admin.mail_template.v1.DeleteMailTemplateResponse\x12r\n" +
 	"\x0fGetMailTemplate\x12..admin.mail_template.v1.GetMailTemplateRequest\x1a/.admin.mail_template.v1.GetMailTemplateResponse\x12x\n" +
-	"\x11ListMailTemplates\x120.admin.mail_template.v1.ListMailTemplatesRequest\x1a1.admin.mail_template.v1.ListMailTemplatesResponseB\xfb\x01\n" +
+	"\x11ListMailTemplates\x120.admin.mail_template.v1.ListMailTemplatesRequest\x1a1.admin.mail_template.v1.ListMailTemplatesResponse\x12\x90\x01\n" +
+	"\x19GetEmailTemplateVariables\x128.admin.mail_template.v1.GetEmailTemplateVariablesRequest\x1a9.admin.mail_template.v1.GetEmailTemplateVariablesResponseB\xfb\x01\n" +
 	"\x1acom.admin.mail_template.v1B\x11MailTemplateProtoP\x01ZTgithub.com/ankushx05/authentication/gen/proto/admin/mail_template/v1;mail_templatev1\xa2\x02\x03AMX\xaa\x02\x15Admin.MailTemplate.V1\xca\x02\x15Admin\\MailTemplate\\V1\xe2\x02!Admin\\MailTemplate\\V1\\GPBMetadata\xea\x02\x17Admin::MailTemplate::V1b\x06proto3"
 
 var (
@@ -780,44 +923,51 @@ func file_admin_mail_template_v1_mail_template_proto_rawDescGZIP() []byte {
 }
 
 var file_admin_mail_template_v1_mail_template_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_admin_mail_template_v1_mail_template_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_admin_mail_template_v1_mail_template_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_admin_mail_template_v1_mail_template_proto_goTypes = []any{
-	(EmailTemplate)(0),                 // 0: admin.mail_template.v1.EmailTemplate
-	(*MailTemplate)(nil),               // 1: admin.mail_template.v1.MailTemplate
-	(*CreateMailTemplateRequest)(nil),  // 2: admin.mail_template.v1.CreateMailTemplateRequest
-	(*CreateMailTemplateResponse)(nil), // 3: admin.mail_template.v1.CreateMailTemplateResponse
-	(*UpdateMailTemplateRequest)(nil),  // 4: admin.mail_template.v1.UpdateMailTemplateRequest
-	(*UpdateMailTemplateResponse)(nil), // 5: admin.mail_template.v1.UpdateMailTemplateResponse
-	(*DeleteMailTemplateRequest)(nil),  // 6: admin.mail_template.v1.DeleteMailTemplateRequest
-	(*DeleteMailTemplateResponse)(nil), // 7: admin.mail_template.v1.DeleteMailTemplateResponse
-	(*GetMailTemplateRequest)(nil),     // 8: admin.mail_template.v1.GetMailTemplateRequest
-	(*GetMailTemplateResponse)(nil),    // 9: admin.mail_template.v1.GetMailTemplateResponse
-	(*ListMailTemplatesRequest)(nil),   // 10: admin.mail_template.v1.ListMailTemplatesRequest
-	(*ListMailTemplatesResponse)(nil),  // 11: admin.mail_template.v1.ListMailTemplatesResponse
+	(EmailTemplate)(0),                        // 0: admin.mail_template.v1.EmailTemplate
+	(*EmailTemplateVariableInfo)(nil),         // 1: admin.mail_template.v1.EmailTemplateVariableInfo
+	(*MailTemplate)(nil),                      // 2: admin.mail_template.v1.MailTemplate
+	(*CreateMailTemplateRequest)(nil),         // 3: admin.mail_template.v1.CreateMailTemplateRequest
+	(*CreateMailTemplateResponse)(nil),        // 4: admin.mail_template.v1.CreateMailTemplateResponse
+	(*UpdateMailTemplateRequest)(nil),         // 5: admin.mail_template.v1.UpdateMailTemplateRequest
+	(*UpdateMailTemplateResponse)(nil),        // 6: admin.mail_template.v1.UpdateMailTemplateResponse
+	(*DeleteMailTemplateRequest)(nil),         // 7: admin.mail_template.v1.DeleteMailTemplateRequest
+	(*DeleteMailTemplateResponse)(nil),        // 8: admin.mail_template.v1.DeleteMailTemplateResponse
+	(*GetMailTemplateRequest)(nil),            // 9: admin.mail_template.v1.GetMailTemplateRequest
+	(*GetMailTemplateResponse)(nil),           // 10: admin.mail_template.v1.GetMailTemplateResponse
+	(*ListMailTemplatesRequest)(nil),          // 11: admin.mail_template.v1.ListMailTemplatesRequest
+	(*ListMailTemplatesResponse)(nil),         // 12: admin.mail_template.v1.ListMailTemplatesResponse
+	(*GetEmailTemplateVariablesRequest)(nil),  // 13: admin.mail_template.v1.GetEmailTemplateVariablesRequest
+	(*GetEmailTemplateVariablesResponse)(nil), // 14: admin.mail_template.v1.GetEmailTemplateVariablesResponse
 }
 var file_admin_mail_template_v1_mail_template_proto_depIdxs = []int32{
-	0,  // 0: admin.mail_template.v1.MailTemplate.unique_key:type_name -> admin.mail_template.v1.EmailTemplate
-	0,  // 1: admin.mail_template.v1.CreateMailTemplateRequest.unique_key:type_name -> admin.mail_template.v1.EmailTemplate
-	1,  // 2: admin.mail_template.v1.CreateMailTemplateResponse.mail_template:type_name -> admin.mail_template.v1.MailTemplate
-	0,  // 3: admin.mail_template.v1.UpdateMailTemplateRequest.unique_key:type_name -> admin.mail_template.v1.EmailTemplate
-	1,  // 4: admin.mail_template.v1.UpdateMailTemplateResponse.mail_template:type_name -> admin.mail_template.v1.MailTemplate
-	1,  // 5: admin.mail_template.v1.GetMailTemplateResponse.mail_template:type_name -> admin.mail_template.v1.MailTemplate
-	1,  // 6: admin.mail_template.v1.ListMailTemplatesResponse.mail_templates:type_name -> admin.mail_template.v1.MailTemplate
-	2,  // 7: admin.mail_template.v1.MailTemplateService.CreateMailTemplate:input_type -> admin.mail_template.v1.CreateMailTemplateRequest
-	4,  // 8: admin.mail_template.v1.MailTemplateService.UpdateMailTemplate:input_type -> admin.mail_template.v1.UpdateMailTemplateRequest
-	6,  // 9: admin.mail_template.v1.MailTemplateService.DeleteMailTemplate:input_type -> admin.mail_template.v1.DeleteMailTemplateRequest
-	8,  // 10: admin.mail_template.v1.MailTemplateService.GetMailTemplate:input_type -> admin.mail_template.v1.GetMailTemplateRequest
-	10, // 11: admin.mail_template.v1.MailTemplateService.ListMailTemplates:input_type -> admin.mail_template.v1.ListMailTemplatesRequest
-	3,  // 12: admin.mail_template.v1.MailTemplateService.CreateMailTemplate:output_type -> admin.mail_template.v1.CreateMailTemplateResponse
-	5,  // 13: admin.mail_template.v1.MailTemplateService.UpdateMailTemplate:output_type -> admin.mail_template.v1.UpdateMailTemplateResponse
-	7,  // 14: admin.mail_template.v1.MailTemplateService.DeleteMailTemplate:output_type -> admin.mail_template.v1.DeleteMailTemplateResponse
-	9,  // 15: admin.mail_template.v1.MailTemplateService.GetMailTemplate:output_type -> admin.mail_template.v1.GetMailTemplateResponse
-	11, // 16: admin.mail_template.v1.MailTemplateService.ListMailTemplates:output_type -> admin.mail_template.v1.ListMailTemplatesResponse
-	12, // [12:17] is the sub-list for method output_type
-	7,  // [7:12] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	0,  // 0: admin.mail_template.v1.EmailTemplateVariableInfo.template:type_name -> admin.mail_template.v1.EmailTemplate
+	0,  // 1: admin.mail_template.v1.MailTemplate.unique_key:type_name -> admin.mail_template.v1.EmailTemplate
+	0,  // 2: admin.mail_template.v1.CreateMailTemplateRequest.unique_key:type_name -> admin.mail_template.v1.EmailTemplate
+	2,  // 3: admin.mail_template.v1.CreateMailTemplateResponse.mail_template:type_name -> admin.mail_template.v1.MailTemplate
+	0,  // 4: admin.mail_template.v1.UpdateMailTemplateRequest.unique_key:type_name -> admin.mail_template.v1.EmailTemplate
+	2,  // 5: admin.mail_template.v1.UpdateMailTemplateResponse.mail_template:type_name -> admin.mail_template.v1.MailTemplate
+	2,  // 6: admin.mail_template.v1.GetMailTemplateResponse.mail_template:type_name -> admin.mail_template.v1.MailTemplate
+	2,  // 7: admin.mail_template.v1.ListMailTemplatesResponse.mail_templates:type_name -> admin.mail_template.v1.MailTemplate
+	1,  // 8: admin.mail_template.v1.GetEmailTemplateVariablesResponse.template_variables:type_name -> admin.mail_template.v1.EmailTemplateVariableInfo
+	3,  // 9: admin.mail_template.v1.MailTemplateService.CreateMailTemplate:input_type -> admin.mail_template.v1.CreateMailTemplateRequest
+	5,  // 10: admin.mail_template.v1.MailTemplateService.UpdateMailTemplate:input_type -> admin.mail_template.v1.UpdateMailTemplateRequest
+	7,  // 11: admin.mail_template.v1.MailTemplateService.DeleteMailTemplate:input_type -> admin.mail_template.v1.DeleteMailTemplateRequest
+	9,  // 12: admin.mail_template.v1.MailTemplateService.GetMailTemplate:input_type -> admin.mail_template.v1.GetMailTemplateRequest
+	11, // 13: admin.mail_template.v1.MailTemplateService.ListMailTemplates:input_type -> admin.mail_template.v1.ListMailTemplatesRequest
+	13, // 14: admin.mail_template.v1.MailTemplateService.GetEmailTemplateVariables:input_type -> admin.mail_template.v1.GetEmailTemplateVariablesRequest
+	4,  // 15: admin.mail_template.v1.MailTemplateService.CreateMailTemplate:output_type -> admin.mail_template.v1.CreateMailTemplateResponse
+	6,  // 16: admin.mail_template.v1.MailTemplateService.UpdateMailTemplate:output_type -> admin.mail_template.v1.UpdateMailTemplateResponse
+	8,  // 17: admin.mail_template.v1.MailTemplateService.DeleteMailTemplate:output_type -> admin.mail_template.v1.DeleteMailTemplateResponse
+	10, // 18: admin.mail_template.v1.MailTemplateService.GetMailTemplate:output_type -> admin.mail_template.v1.GetMailTemplateResponse
+	12, // 19: admin.mail_template.v1.MailTemplateService.ListMailTemplates:output_type -> admin.mail_template.v1.ListMailTemplatesResponse
+	14, // 20: admin.mail_template.v1.MailTemplateService.GetEmailTemplateVariables:output_type -> admin.mail_template.v1.GetEmailTemplateVariablesResponse
+	15, // [15:21] is the sub-list for method output_type
+	9,  // [9:15] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_admin_mail_template_v1_mail_template_proto_init() }
@@ -831,7 +981,7 @@ func file_admin_mail_template_v1_mail_template_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_mail_template_v1_mail_template_proto_rawDesc), len(file_admin_mail_template_v1_mail_template_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   11,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

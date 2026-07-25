@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"connectrpc.com/connect"
+	domainerrors "github.com/ankushx05/authentication/internal/pkg/errors"
 	"github.com/ankushx05/authentication/internal/platform/logger"
 )
 
@@ -30,14 +31,21 @@ func NewLoggingInterceptor() connect.UnaryInterceptorFunc {
 			if err != nil {
 				code := connect.CodeInternal
 				var connectErr *connect.Error
+				errMsg := err.Error()
+
 				if errors.As(err, &connectErr) {
 					code = connectErr.Code()
+				}
+				
+				var maskedErr *domainerrors.MaskedError
+				if errors.As(err, &maskedErr) {
+					errMsg = maskedErr.Err.Error()
 				}
 
 				log.Error("⬅️  failed",
 					"procedure", procedure,
 					"code", code.String(),
-					"error", err.Error(),
+					"error", errMsg,
 					"duration", formatDuration(duration),
 				)
 			} else {

@@ -48,6 +48,9 @@ const (
 	// MailTemplateServiceListMailTemplatesProcedure is the fully-qualified name of the
 	// MailTemplateService's ListMailTemplates RPC.
 	MailTemplateServiceListMailTemplatesProcedure = "/admin.mail_template.v1.MailTemplateService/ListMailTemplates"
+	// MailTemplateServiceGetEmailTemplateVariablesProcedure is the fully-qualified name of the
+	// MailTemplateService's GetEmailTemplateVariables RPC.
+	MailTemplateServiceGetEmailTemplateVariablesProcedure = "/admin.mail_template.v1.MailTemplateService/GetEmailTemplateVariables"
 )
 
 // MailTemplateServiceClient is a client for the admin.mail_template.v1.MailTemplateService service.
@@ -57,6 +60,7 @@ type MailTemplateServiceClient interface {
 	DeleteMailTemplate(context.Context, *connect.Request[v1.DeleteMailTemplateRequest]) (*connect.Response[v1.DeleteMailTemplateResponse], error)
 	GetMailTemplate(context.Context, *connect.Request[v1.GetMailTemplateRequest]) (*connect.Response[v1.GetMailTemplateResponse], error)
 	ListMailTemplates(context.Context, *connect.Request[v1.ListMailTemplatesRequest]) (*connect.Response[v1.ListMailTemplatesResponse], error)
+	GetEmailTemplateVariables(context.Context, *connect.Request[v1.GetEmailTemplateVariablesRequest]) (*connect.Response[v1.GetEmailTemplateVariablesResponse], error)
 }
 
 // NewMailTemplateServiceClient constructs a client for the
@@ -100,16 +104,23 @@ func NewMailTemplateServiceClient(httpClient connect.HTTPClient, baseURL string,
 			connect.WithSchema(mailTemplateServiceMethods.ByName("ListMailTemplates")),
 			connect.WithClientOptions(opts...),
 		),
+		getEmailTemplateVariables: connect.NewClient[v1.GetEmailTemplateVariablesRequest, v1.GetEmailTemplateVariablesResponse](
+			httpClient,
+			baseURL+MailTemplateServiceGetEmailTemplateVariablesProcedure,
+			connect.WithSchema(mailTemplateServiceMethods.ByName("GetEmailTemplateVariables")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // mailTemplateServiceClient implements MailTemplateServiceClient.
 type mailTemplateServiceClient struct {
-	createMailTemplate *connect.Client[v1.CreateMailTemplateRequest, v1.CreateMailTemplateResponse]
-	updateMailTemplate *connect.Client[v1.UpdateMailTemplateRequest, v1.UpdateMailTemplateResponse]
-	deleteMailTemplate *connect.Client[v1.DeleteMailTemplateRequest, v1.DeleteMailTemplateResponse]
-	getMailTemplate    *connect.Client[v1.GetMailTemplateRequest, v1.GetMailTemplateResponse]
-	listMailTemplates  *connect.Client[v1.ListMailTemplatesRequest, v1.ListMailTemplatesResponse]
+	createMailTemplate        *connect.Client[v1.CreateMailTemplateRequest, v1.CreateMailTemplateResponse]
+	updateMailTemplate        *connect.Client[v1.UpdateMailTemplateRequest, v1.UpdateMailTemplateResponse]
+	deleteMailTemplate        *connect.Client[v1.DeleteMailTemplateRequest, v1.DeleteMailTemplateResponse]
+	getMailTemplate           *connect.Client[v1.GetMailTemplateRequest, v1.GetMailTemplateResponse]
+	listMailTemplates         *connect.Client[v1.ListMailTemplatesRequest, v1.ListMailTemplatesResponse]
+	getEmailTemplateVariables *connect.Client[v1.GetEmailTemplateVariablesRequest, v1.GetEmailTemplateVariablesResponse]
 }
 
 // CreateMailTemplate calls admin.mail_template.v1.MailTemplateService.CreateMailTemplate.
@@ -137,6 +148,12 @@ func (c *mailTemplateServiceClient) ListMailTemplates(ctx context.Context, req *
 	return c.listMailTemplates.CallUnary(ctx, req)
 }
 
+// GetEmailTemplateVariables calls
+// admin.mail_template.v1.MailTemplateService.GetEmailTemplateVariables.
+func (c *mailTemplateServiceClient) GetEmailTemplateVariables(ctx context.Context, req *connect.Request[v1.GetEmailTemplateVariablesRequest]) (*connect.Response[v1.GetEmailTemplateVariablesResponse], error) {
+	return c.getEmailTemplateVariables.CallUnary(ctx, req)
+}
+
 // MailTemplateServiceHandler is an implementation of the admin.mail_template.v1.MailTemplateService
 // service.
 type MailTemplateServiceHandler interface {
@@ -145,6 +162,7 @@ type MailTemplateServiceHandler interface {
 	DeleteMailTemplate(context.Context, *connect.Request[v1.DeleteMailTemplateRequest]) (*connect.Response[v1.DeleteMailTemplateResponse], error)
 	GetMailTemplate(context.Context, *connect.Request[v1.GetMailTemplateRequest]) (*connect.Response[v1.GetMailTemplateResponse], error)
 	ListMailTemplates(context.Context, *connect.Request[v1.ListMailTemplatesRequest]) (*connect.Response[v1.ListMailTemplatesResponse], error)
+	GetEmailTemplateVariables(context.Context, *connect.Request[v1.GetEmailTemplateVariablesRequest]) (*connect.Response[v1.GetEmailTemplateVariablesResponse], error)
 }
 
 // NewMailTemplateServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -184,6 +202,12 @@ func NewMailTemplateServiceHandler(svc MailTemplateServiceHandler, opts ...conne
 		connect.WithSchema(mailTemplateServiceMethods.ByName("ListMailTemplates")),
 		connect.WithHandlerOptions(opts...),
 	)
+	mailTemplateServiceGetEmailTemplateVariablesHandler := connect.NewUnaryHandler(
+		MailTemplateServiceGetEmailTemplateVariablesProcedure,
+		svc.GetEmailTemplateVariables,
+		connect.WithSchema(mailTemplateServiceMethods.ByName("GetEmailTemplateVariables")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/admin.mail_template.v1.MailTemplateService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case MailTemplateServiceCreateMailTemplateProcedure:
@@ -196,6 +220,8 @@ func NewMailTemplateServiceHandler(svc MailTemplateServiceHandler, opts ...conne
 			mailTemplateServiceGetMailTemplateHandler.ServeHTTP(w, r)
 		case MailTemplateServiceListMailTemplatesProcedure:
 			mailTemplateServiceListMailTemplatesHandler.ServeHTTP(w, r)
+		case MailTemplateServiceGetEmailTemplateVariablesProcedure:
+			mailTemplateServiceGetEmailTemplateVariablesHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -223,4 +249,8 @@ func (UnimplementedMailTemplateServiceHandler) GetMailTemplate(context.Context, 
 
 func (UnimplementedMailTemplateServiceHandler) ListMailTemplates(context.Context, *connect.Request[v1.ListMailTemplatesRequest]) (*connect.Response[v1.ListMailTemplatesResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("admin.mail_template.v1.MailTemplateService.ListMailTemplates is not implemented"))
+}
+
+func (UnimplementedMailTemplateServiceHandler) GetEmailTemplateVariables(context.Context, *connect.Request[v1.GetEmailTemplateVariablesRequest]) (*connect.Response[v1.GetEmailTemplateVariablesResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("admin.mail_template.v1.MailTemplateService.GetEmailTemplateVariables is not implemented"))
 }

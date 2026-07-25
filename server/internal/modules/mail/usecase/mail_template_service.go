@@ -27,8 +27,16 @@ func NewMailTemplateService(repo ports.MailTemplateRepository, settingsService s
 }
 
 func (s *MailTemplateService) CreateMailTemplate(ctx context.Context, template *domain.MailTemplate) (*domain.MailTemplate, error) {
+	// Auto-populate variables from registry based on unique key
+	if registryVars := domain.GetVariablesForTemplate(template.UniqueKey); registryVars != nil {
+		template.Variables = registryVars
+	}
+
 	created, err := s.repo.Create(ctx, template)
 	if err != nil {
+		if strings.Contains(err.Error(), "unique_key") {
+			return nil, errors.NewAlreadyExists("mail template", "unique_key", template.UniqueKey)
+		}
 		return nil, errors.NewInternal(err)
 	}
 	return created, nil
@@ -39,6 +47,11 @@ func (s *MailTemplateService) UpdateMailTemplate(ctx context.Context, template *
 	_, err := s.repo.GetByID(ctx, template.ID)
 	if err != nil {
 		return nil, errors.NewNotFound("mail template", template.ID.String())
+	}
+
+	// Auto-populate variables from registry based on unique key
+	if registryVars := domain.GetVariablesForTemplate(template.UniqueKey); registryVars != nil {
+		template.Variables = registryVars
 	}
 
 	updated, err := s.repo.Update(ctx, template)
@@ -85,13 +98,22 @@ func (s *MailTemplateService) SendMail(ctx context.Context, uniqueKey string, va
 		return fmt.Errorf("mail template not found for key %s: %w", uniqueKey, err)
 	}
 
-	// 2. Replace variables in subject and body
+	// 2. Validate variables against the registry
+	if registryVars := domain.GetVariablesForTemplate(uniqueKey); registryVars != nil {
+		for _, requiredVar := range registryVars {
+			if _, ok := variables[requiredVar]; !ok {
+				log.Warn("Missing variable for mail template", "uniqueKey", uniqueKey, "variable", requiredVar)
+			}
+		}
+	}
+
+	// 3. Replace variables in subject and body
 	subject := replaceVariables(template.Subject, variables)
 	body := replaceVariables(template.Body, variables)
 
 	log.Debug("Mail Template", "subject", subject, "body", body)
 
-	// 3. Fetch SMTP settings
+	// 4. Fetch SMTP settings
 	mailSettings, err := s.settingsService.GetMailSettings(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to get mail settings: %w", err)
@@ -101,11 +123,11 @@ func (s *MailTemplateService) SendMail(ctx context.Context, uniqueKey string, va
 		return fmt.Errorf("mail settings are not configured")
 	}
 
-	// 4. Derive port from encryption type
+	// 5. Derive port from encryption type
 	port := derivePort(mailSettings.Encryption)
 
 	log.Debug("Mail Settings", "host", mailSettings.Host, "port", port, "username", mailSettings.Username, "password", mailSettings.Password)
-	// 5. Send email using gomail
+	// 6. Send email using gomail
 	m := gomail.NewMessage()
 	m.SetHeader("From", mailSettings.Username)
 	m.SetHeader("To", toEmail)
@@ -124,6 +146,11 @@ func (s *MailTemplateService) SendMail(ctx context.Context, uniqueKey string, va
 	log.Debug("Email Sent", "to", toEmail, "message", m)
 
 	return nil
+}
+
+// GetEmailTemplateVariables returns the registry of accepted variables per template.
+func (s *MailTemplateService) GetEmailTemplateVariables() map[string][]string {
+	return domain.EmailTemplateVariables
 }
 
 // replaceVariables replaces all {{key}} placeholders in the text with values from the variables map.

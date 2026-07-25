@@ -119,6 +119,27 @@ func (h *MailTemplateHandler) ListMailTemplates(ctx context.Context, req *connec
 	}), nil
 }
 
+// ======================= GET EMAIL TEMPLATE VARIABLES =======================
+func (h *MailTemplateHandler) GetEmailTemplateVariables(ctx context.Context, req *connect.Request[mailtemplatev1.GetEmailTemplateVariablesRequest]) (*connect.Response[mailtemplatev1.GetEmailTemplateVariablesResponse], error) {
+	registry := h.service.GetEmailTemplateVariables()
+
+	var templateVars []*mailtemplatev1.EmailTemplateVariableInfo
+	for key, vars := range registry {
+		enumVal, ok := mailtemplatev1.EmailTemplate_value[key]
+		if !ok {
+			continue
+		}
+		templateVars = append(templateVars, &mailtemplatev1.EmailTemplateVariableInfo{
+			Template:  mailtemplatev1.EmailTemplate(enumVal),
+			Variables: vars,
+		})
+	}
+
+	return connect.NewResponse(&mailtemplatev1.GetEmailTemplateVariablesResponse{
+		TemplateVariables: templateVars,
+	}), nil
+}
+
 // domainToProto converts a domain MailTemplate to proto MailTemplate message.
 func domainToProto(t *domain.MailTemplate) *mailtemplatev1.MailTemplate {
 	if t == nil {

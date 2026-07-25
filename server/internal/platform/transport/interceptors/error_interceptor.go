@@ -57,7 +57,7 @@ func toConnectError(err error) *connect.Error {
 		return connect.NewError(connect.CodePermissionDenied, err)
 
 	case errors.As(err, &internalErr):
-		return connect.NewError(connect.CodeInternal, fmt.Errorf("internal server error"))
+		return connect.NewError(connect.CodeInternal, domainerrors.NewMasked(internalErr, "internal server error"))
 
 	default:
 		return connect.NewError(connect.CodeInternal, fmt.Errorf("an unexpected error occurred"))
