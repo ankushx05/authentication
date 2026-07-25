@@ -3,7 +3,7 @@ import { Text } from "@repo/ui/text";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { getAuthState } from "#/utils/auth";
 import { useLogout } from "#/features/auth/login/hooks/use-logout";
-import { Settings, LogOut } from "lucide-react";
+import { Settings, LogOut, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   beforeLoad: async () => {
@@ -25,15 +25,24 @@ function App() {
           Admin Control Center
         </Text>
         <Text variant="paragraph2" className="text-foreground-secondary">
-          Manage application configurations, authentication settings, and other
-          core features.
+          Manage application configurations, authentication settings, and email templates.
         </Text>
       </div>
 
       <div className="flex flex-col gap-4">
-        <Link to="/settings">
+        <Link to="/mail-templates">
           <Button
             color="primary"
+            className="w-full flex items-center justify-center gap-2 py-3 font-semibold rounded-xl"
+          >
+            <Mail size={18} />
+            Mail Templates
+          </Button>
+        </Link>
+
+        <Link to="/settings">
+          <Button
+            color="secondary"
             className="w-full flex items-center justify-center gap-2 py-3 font-semibold rounded-xl"
           >
             <Settings size={18} />

@@ -9,6 +9,18 @@ import (
 	"github.com/ankushx05/authentication/internal/platform/database/ent"
 )
 
+// The MailTemplatesFunc type is an adapter to allow the use of ordinary
+// function as MailTemplates mutator.
+type MailTemplatesFunc func(context.Context, *ent.MailTemplatesMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f MailTemplatesFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.MailTemplatesMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.MailTemplatesMutation", m)
+}
+
 // The SettingFunc type is an adapter to allow the use of ordinary
 // function as Setting mutator.
 type SettingFunc func(context.Context, *ent.SettingMutation) (ent.Value, error)

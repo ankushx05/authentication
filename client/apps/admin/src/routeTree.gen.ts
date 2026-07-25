@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as MailTemplatesRouteImport } from './routes/mail-templates'
 import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
@@ -17,6 +18,11 @@ import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MailTemplatesRoute = MailTemplatesRouteImport.update({
+  id: '/mail-templates',
+  path: '/mail-templates',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRouteRoute = AuthRouteRouteImport.update({
@@ -36,11 +42,13 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/mail-templates': typeof MailTemplatesRoute
   '/settings': typeof SettingsRoute
   '/login': typeof AuthLoginRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/mail-templates': typeof MailTemplatesRoute
   '/settings': typeof SettingsRoute
   '/login': typeof AuthLoginRoute
 }
@@ -48,20 +56,28 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteRouteWithChildren
+  '/mail-templates': typeof MailTemplatesRoute
   '/settings': typeof SettingsRoute
   '/_auth/login': typeof AuthLoginRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/settings' | '/login'
+  fullPaths: '/' | '/mail-templates' | '/settings' | '/login'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/settings' | '/login'
-  id: '__root__' | '/' | '/_auth' | '/settings' | '/_auth/login'
+  to: '/' | '/mail-templates' | '/settings' | '/login'
+  id:
+    | '__root__'
+    | '/'
+    | '/_auth'
+    | '/mail-templates'
+    | '/settings'
+    | '/_auth/login'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRouteRoute: typeof AuthRouteRouteWithChildren
+  MailTemplatesRoute: typeof MailTemplatesRoute
   SettingsRoute: typeof SettingsRoute
 }
 
@@ -72,6 +88,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mail-templates': {
+      id: '/mail-templates'
+      path: '/mail-templates'
+      fullPath: '/mail-templates'
+      preLoaderRoute: typeof MailTemplatesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_auth': {
@@ -113,6 +136,7 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRouteRoute: AuthRouteRouteWithChildren,
+  MailTemplatesRoute: MailTemplatesRoute,
   SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport

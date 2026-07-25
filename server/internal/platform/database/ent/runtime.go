@@ -5,6 +5,7 @@ package ent
 import (
 	"time"
 
+	"github.com/ankushx05/authentication/internal/platform/database/ent/mailtemplates"
 	"github.com/ankushx05/authentication/internal/platform/database/ent/schema"
 	"github.com/ankushx05/authentication/internal/platform/database/ent/setting"
 	"github.com/ankushx05/authentication/internal/platform/database/ent/user"
@@ -15,6 +16,41 @@ import (
 // (default values, validators, hooks and policies) and stitches it
 // to their package variables.
 func init() {
+	mailtemplatesMixin := schema.MailTemplates{}.Mixin()
+	mailtemplatesMixinFields0 := mailtemplatesMixin[0].Fields()
+	_ = mailtemplatesMixinFields0
+	mailtemplatesFields := schema.MailTemplates{}.Fields()
+	_ = mailtemplatesFields
+	// mailtemplatesDescCreatedAt is the schema descriptor for created_at field.
+	mailtemplatesDescCreatedAt := mailtemplatesMixinFields0[1].Descriptor()
+	// mailtemplates.DefaultCreatedAt holds the default value on creation for the created_at field.
+	mailtemplates.DefaultCreatedAt = mailtemplatesDescCreatedAt.Default.(func() time.Time)
+	// mailtemplatesDescUpdatedAt is the schema descriptor for updated_at field.
+	mailtemplatesDescUpdatedAt := mailtemplatesMixinFields0[2].Descriptor()
+	// mailtemplates.DefaultUpdatedAt holds the default value on creation for the updated_at field.
+	mailtemplates.DefaultUpdatedAt = mailtemplatesDescUpdatedAt.Default.(func() time.Time)
+	// mailtemplates.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
+	mailtemplates.UpdateDefaultUpdatedAt = mailtemplatesDescUpdatedAt.UpdateDefault.(func() time.Time)
+	// mailtemplatesDescName is the schema descriptor for name field.
+	mailtemplatesDescName := mailtemplatesFields[0].Descriptor()
+	// mailtemplates.NameValidator is a validator for the "name" field. It is called by the builders before save.
+	mailtemplates.NameValidator = mailtemplatesDescName.Validators[0].(func(string) error)
+	// mailtemplatesDescSubject is the schema descriptor for subject field.
+	mailtemplatesDescSubject := mailtemplatesFields[1].Descriptor()
+	// mailtemplates.SubjectValidator is a validator for the "subject" field. It is called by the builders before save.
+	mailtemplates.SubjectValidator = mailtemplatesDescSubject.Validators[0].(func(string) error)
+	// mailtemplatesDescBody is the schema descriptor for body field.
+	mailtemplatesDescBody := mailtemplatesFields[2].Descriptor()
+	// mailtemplates.BodyValidator is a validator for the "body" field. It is called by the builders before save.
+	mailtemplates.BodyValidator = mailtemplatesDescBody.Validators[0].(func(string) error)
+	// mailtemplatesDescUniqueKey is the schema descriptor for unique_key field.
+	mailtemplatesDescUniqueKey := mailtemplatesFields[4].Descriptor()
+	// mailtemplates.UniqueKeyValidator is a validator for the "unique_key" field. It is called by the builders before save.
+	mailtemplates.UniqueKeyValidator = mailtemplatesDescUniqueKey.Validators[0].(func(string) error)
+	// mailtemplatesDescID is the schema descriptor for id field.
+	mailtemplatesDescID := mailtemplatesMixinFields0[0].Descriptor()
+	// mailtemplates.DefaultID holds the default value on creation for the id field.
+	mailtemplates.DefaultID = mailtemplatesDescID.Default.(func() uuid.UUID)
 	settingFields := schema.Setting{}.Fields()
 	_ = settingFields
 	// settingDescID is the schema descriptor for id field.

@@ -6,6 +6,7 @@ import (
 	"github.com/ankushx05/authentication/internal/modules/identity/adapters/repository"
 	"github.com/ankushx05/authentication/internal/modules/identity/domain"
 	"github.com/ankushx05/authentication/internal/modules/identity/usecase"
+	mailPorts "github.com/ankushx05/authentication/internal/modules/mail/ports"
 	"github.com/ankushx05/authentication/internal/platform/deps"
 	"github.com/ankushx05/authentication/internal/platform/jwt"
 )
@@ -17,9 +18,9 @@ type Module struct {
 	tokenService     *jwt.TokenService[domain.TokenPayload]
 }
 
-func NewModule(d *deps.Deps) *Module {
+func NewModule(d *deps.Deps, mailService mailPorts.MailTemplateService) *Module {
 	repo := repository.NewEntUserRepository(d.DB)
-	service := usecase.NewUserService(repo)
+	service := usecase.NewUserService(repo, mailService)
 
 	tokenService := jwt.NewTokenService[domain.TokenPayload](d.Config.JwtSecret, "auth-service", d.Config.JwtExpiration)
 	authHandler := usergrpc.NewAuthHandler(service, tokenService, d.Cookie)

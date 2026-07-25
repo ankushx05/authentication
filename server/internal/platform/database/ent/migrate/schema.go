@@ -8,6 +8,24 @@ import (
 )
 
 var (
+	// MailTemplatesColumns holds the columns for the "mail_templates" table.
+	MailTemplatesColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeUUID},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "deleted_at", Type: field.TypeTime, Nullable: true},
+		{Name: "name", Type: field.TypeString},
+		{Name: "subject", Type: field.TypeString},
+		{Name: "body", Type: field.TypeString},
+		{Name: "variables", Type: field.TypeJSON, Nullable: true},
+		{Name: "unique_key", Type: field.TypeString, Unique: true},
+	}
+	// MailTemplatesTable holds the schema information for the "mail_templates" table.
+	MailTemplatesTable = &schema.Table{
+		Name:       "mail_templates",
+		Columns:    MailTemplatesColumns,
+		PrimaryKey: []*schema.Column{MailTemplatesColumns[0]},
+	}
 	// SettingsColumns holds the columns for the "settings" table.
 	SettingsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUUID},
@@ -40,6 +58,7 @@ var (
 	}
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
+		MailTemplatesTable,
 		SettingsTable,
 		UsersTable,
 	}

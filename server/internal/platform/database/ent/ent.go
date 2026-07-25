@@ -12,6 +12,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
+	"github.com/ankushx05/authentication/internal/platform/database/ent/mailtemplates"
 	"github.com/ankushx05/authentication/internal/platform/database/ent/setting"
 	"github.com/ankushx05/authentication/internal/platform/database/ent/user"
 )
@@ -74,8 +75,9 @@ var (
 func checkColumn(t, c string) error {
 	initCheck.Do(func() {
 		columnCheck = sql.NewColumnCheck(map[string]func(string) bool{
-			setting.Table: setting.ValidColumn,
-			user.Table:    user.ValidColumn,
+			mailtemplates.Table: mailtemplates.ValidColumn,
+			setting.Table:       setting.ValidColumn,
+			user.Table:          user.ValidColumn,
 		})
 	})
 	return columnCheck(t, c)

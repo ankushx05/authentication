@@ -4,6 +4,7 @@ import (
 	"github.com/ankushx05/authentication/internal/modules/identity/domain"
 	settingsgrpc "github.com/ankushx05/authentication/internal/modules/settings/adapters/grpc"
 	"github.com/ankushx05/authentication/internal/modules/settings/adapters/repository"
+	"github.com/ankushx05/authentication/internal/modules/settings/ports"
 	"github.com/ankushx05/authentication/internal/modules/settings/usecase"
 	"github.com/ankushx05/authentication/internal/platform/deps"
 	"github.com/ankushx05/authentication/internal/platform/jwt"
@@ -11,6 +12,7 @@ import (
 
 type Module struct {
 	settingsHandler *settingsgrpc.SettingsHandler
+	SettingsService ports.SettingsService
 	tokenService    *jwt.TokenService[domain.TokenPayload]
 }
 
@@ -23,6 +25,7 @@ func NewModule(d *deps.Deps) *Module {
 
 	return &Module{
 		settingsHandler: settingsHandler,
+		SettingsService: service,
 		tokenService:    tokenService,
 	}
 }
