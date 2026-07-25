@@ -129,7 +129,7 @@ func (s *MailTemplateService) SendMail(ctx context.Context, uniqueKey string, va
 	log.Debug("Mail Settings", "host", mailSettings.Host, "port", port, "username", mailSettings.Username, "password", mailSettings.Password)
 	// 6. Send email using gomail
 	m := gomail.NewMessage()
-	m.SetHeader("From", mailSettings.Username)
+	m.SetHeader("From", fmt.Sprintf("%s <%s>", "Authentication", mailSettings.Username))
 	m.SetHeader("To", toEmail)
 	m.SetHeader("Subject", subject)
 	m.SetBody("text/html", body)

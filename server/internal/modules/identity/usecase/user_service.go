@@ -79,6 +79,17 @@ func (s *UserService) Login(ctx context.Context, email, password string) (*domai
 		return nil, errors.NewUnauthorized("invalid email or password")
 	}
 
+	if s.mailService != nil {
+		err := s.mailService.SendMail(ctx, mailtemplatev1.EmailTemplate_EMAIL_TEMPLATE_USER_LOGIN.String(), map[string]string{
+			"name":  user.Fullname,
+			"email": user.Email,
+			"otp":   "123123",
+		}, user.Email)
+		if err != nil {
+			return nil, errors.NewInternal(err)
+		}
+	}
+
 	return user, nil
 }
 
